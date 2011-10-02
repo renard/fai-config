@@ -1,0 +1,20 @@
+# sources.list
+# FAI generated
+
+deb http://192.168.101.5:9999/debian-cw squeeze-cw main contrib non-free
+deb http://192.168.101.5:9999/security squeeze/updates main contrib non-free
+#deb http://192.168.101.5:9999/volatile squeeze/volatile main contrib non-free
+deb http://192.168.101.5:9999/backports.org squeeze-backports main contrib non-free
+deb http://192.168.101.5:9999/debian squeeze-updates main contrib non-free
+deb http://192.168.101.5:9999/debian squeeze-proposed-updates main contrib non-free
+deb http://192.168.101.5:9999/debian squeeze main contrib non-free
+
+
+# deb http://debian.chezwam.org/debian squeeze-cw main contrib non-free
+# deb http://debian.advalem.net/debian-security squeeze/updates main contrib non-free
+# #deb http://debian.advalem.net/debian-volatile squeeze/volatile main contrib non-free
+# deb http://debian.advalem.net/backports.org squeeze-backports main contrib non-free
+# deb http://debian.advalem.net/debian squeeze-updates main contrib non-free
+# deb http://debian.advalem.net/debian squeeze-proposed-updates main contrib non-free
+# deb http://debian.advalem.net/debian squeeze main contrib non-free
+

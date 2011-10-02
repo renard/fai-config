@@ -1,0 +1,10 @@
+Variables to change
+
+* Site specific IPs:
+  - 192.168.101.5: FAI server
+
+* fai.conf
+  FAI_CONFIG_SRC=nfs://192.168.101.5/srv/fai/config
+
+* make-fai-nfsroot.conf
+  FAI_DEBOOTSTRAP="squeeze http://192.168.101.5/debian"

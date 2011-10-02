@@ -1,0 +1,25 @@
+# package list for creating the NFSROOT
+
+PACKAGES aptitude
+  fai-nfsroot/squeeze-cw
+  nfs-common module-init-tools ssh rdate lshw portmap
+  rsync lftp less dump e2fsprogs
+  hwinfo psmisc pciutils hdparm smartmontools parted mdadm lvm2
+  dnsutils ntpdate xfsprogs xfsdump
+  procinfo dialog discover
+  console-tools console-common
+  iproute udev liblinux-lvm-perl
+  cryptsetup busybox
+  etckeeper/squeeze-cw
+  firmware-linux-free/squeeze-backports
+  firmware-linux-nonfree/squeeze-backports
+  firmware-bnx2/squeeze-backports
+  firmware-iwlwifi/squeeze-backports
+  linux-base/squeeze-backports
+  initramfs-tools/squeeze-backports
+  iotop
+
+PACKAGES aptitude AMD64
+  grub-pc lilo
+  linux-image-2.6-amd64/squeeze-backports
+
