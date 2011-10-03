@@ -1,0 +1,48 @@
+# Here are some examples of remote repository mappings.
+# See http://www.debian.org/mirror/list for mirror sites.
+
+#debian		http://ftp.debian.org/debian
+#security	http://security.debian.org/debian-security
+#volatile	http://volatile.debian.org/debian-volatile
+
+# The following are the default parameter values, so there is
+# no need to uncomment them unless you want a different value.
+# See approx.conf(5) for details.
+
+#$cache		/var/cache/approx
+#$max_rate	unlimited
+#$max_redirects 5
+#$user		approx
+#$group		approx
+#$syslog	daemon
+#$pdiffs	true
+#$offline	false
+#$max_wait	10
+#$verbose	false
+#$debug		false
+
+
+# For debian use something like:
+# deb http://10.0.0.1:9999/security squeeze/updates main contrib non-free
+# #deb http://10.0.0.1:9999/volatile squeeze/volatile main contrib non-free
+# deb http://10.0.0.1:9999/backports.org squeeze-backports main contrib non-free
+# deb http://10.0.0.1:9999/debian squeeze-updates main contrib non-free
+# deb http://10.0.0.1:9999/debian squeeze-proposed-updates main contrib non-free
+# deb http://10.0.0.1:9999/debian squeeze main contrib non-free
+
+debian			http://debian.advalem.net/debian
+security		http://debian.advalem.net/debian-security
+volatile		http://debian.advalem.net/debian-volatile
+debian-backports	http://debian.advalem.net/debian-backports
+backports.org		http://debian.advalem.net/backports.org
+
+archives		http://debian.advalem.net/debian-archives/debian
+archives-backports.org	http://debian.advalem.net/debian-archives/backports.org
+archives-amd64		http://debian.advalem.net/debian-archives/debian-amd64
+archives-backports	http://debian.advalem.net/debian-archives/debian-backports
+archives-non-US		http://debian.advalem.net/debian-archives/debian-non-US
+archives-security	http://debian.advalem.net/debian-archives/debian-security
+archives-volatile	http://debian.advalem.net/debian-archives/debian-volatile
+
+# deb http://10.0.0.1:9999/debian-cw squeeze-cw main contrib non-free
+debian-cw		http://debian.chezwam.org/debian

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+DEFAULT_DEV=$(ip -4 r l default  | awk '{print $5}')
+DEFAULT_GW=$(ip -4 r l default  | awk '{print $3}')
+DEFAULT_ADDRESS=$(ifconfig eth0 | awk -F' +|:' '/inet /{print $4}')
+DEFAULT_NETMASK=$(ifconfig eth0 | awk -F' +|:' '/inet /{print $8}')
+
+sed -i "s/GRUB_CMDLINE_LINUX=.*/GRUB_CMDLINE_LINUX=\"reboot=pci ip=${DEFAULT_ADDRESS}::${DEFAULT_GW}:${DEFAULT_NETMASK}::${DEFAULT_DEV}:none\"/" ${FAI_ROOT}/etc/default/grub

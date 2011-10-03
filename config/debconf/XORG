@@ -1,0 +1,6 @@
+xserver-xorg xserver-xorg/config/inputdevice/keyboard/model string pc105
+xserver-xorg    xserver-xorg/autodetect_monitor         boolean false
+xserver-xorg    xserver-xorg/autodetect_keyboard        boolean true
+xserver-xorg    xserver-xorg/autodetect_mouse           boolean true
+xserver-xorg    xserver-xorg/autodetect_video_card      boolean true
+

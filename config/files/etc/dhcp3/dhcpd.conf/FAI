@@ -1,0 +1,29 @@
+# dhcpd.conf for fai
+# replace faiserver with the name of your install server
+
+deny unknown-clients;
+option dhcp-max-message-size 2048; 
+use-host-decl-names on;
+#always-reply-rfc1048 on;
+
+option openbsd-install-url code 225 = text;
+
+subnet 192.168.101.0 netmask 255.255.255.0 {
+   option routers 192.168.101.1;
+   option domain-name "install.chezwam.org";
+   option domain-name-servers 8.8.8.8;
+   #option time-servers 10.73.4.4;
+   #option ntp-servers 10.73.4.4;
+   next-server 192.168.101.5;
+   authoritative;
+}
+
+group {
+      filename "fai/pxelinux.0";
+      option domain-name "install.chezwam.org";
+
+      # installed vm hosts
+      # 52:54:00:XX:XX:XX => QEMU prefix
+      host fai {hardware ethernet 52:54:00:12:34:57;fixed-address 192.168.101.5;}
+      host fai2 {hardware ethernet 52:54:00:12:34:58;fixed-address 192.168.101.6;}
+}

@@ -1,0 +1,8 @@
+You can change the LUKS password using following command:
+
+cryptsetup luksAddKey /dev/sda2
+
+And remove install key:
+
+cryptsetup luksKillSlot  /dev/sda2 0
+

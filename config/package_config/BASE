@@ -1,0 +1,33 @@
+PACKAGES aptitude
+  cryptsetup
+  lvm2
+  busybox
+  sudo
+  cron
+  debconf-utils
+  file
+  hdparm
+  less
+  rsync
+  openssh-client openssh-server
+  strace
+  time
+  procinfo
+  locales
+  console-common
+  pciutils psmisc
+  git
+  etckeeper/squeeze-cw
+  lockfile-progs
+  ntpdate ntp
+  vlan ngrep telnet
+  #ifenslave
+  xfsprogs xfsdump
+  lsof psmisc iotop screen
+  htop
+  locate
+  tcpdump
+  mtr-tiny
+  tasksel- tasksel-data-
+  nano-
+  gawk mawk-

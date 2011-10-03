@@ -1,0 +1,4 @@
+PACKAGES aptitude
+  nvidia-kernel-2.6.39-bpo.2-amd64/squeeze-cw
+  xserver-xorg-video-nvidia/squeeze-cw
+  

@@ -1,0 +1,11 @@
+#! /bin/bash
+
+blockdev --report | sed '1 d' | awk '{print $NF}' | xargs -n 1 blockdev --setra 65536
+
+[ -s $target/etc/kernel-img.conf ] || fcopy -Bi /etc/kernel-img.conf
+
+cat <<EOF > $FAI_ROOT/etc/hosts
+127.0.0.1 localhost
+127.0.1.1 $HOSTNAME.$DOMAIN $HOSTNAME
+EOF
+

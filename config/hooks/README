@@ -1,0 +1,17 @@
+Class order:
+
+  - confdir
+  - setup
+  - defclass
+  - defvar
+  - install
+  - partition
+  - mountdisks
+  - extrbase
+  - mirror
+  - prepareapt
+  - updatebase
+  - instsoft
+  - debconf
+
+See http://fai-project.org/fai-guide/ar01s07.html#hooks

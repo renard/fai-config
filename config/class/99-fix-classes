@@ -1,0 +1,6 @@
+#!/bin/bash
+
+(ifclass I386 || ifclass AMD64) && echo GRUB_PC 
+
+(ifclass LVM_CRYPYO || ifclass LVM_CRYPTO_XFS) && echo LVM
+(ifclass LVM_CRYPYO || ifclass LVM_CRYPTO_XFS) && echo CRYPTO

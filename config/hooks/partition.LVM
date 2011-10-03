@@ -1,0 +1,17 @@
+#!/bin/sh
+exit 0
+echo "removing Partition"
+for dev in $disklist; do
+	d=dev/$dev
+        for p in `parted -s $d print | sed -n 's/^ \([0-9]\+\).*/\1/p'`; do
+                #echo "parted -s $d rm $p"
+                #parted -s $d rm $p
+                dd if=/dev/zero of=${d}${p} count=1024 || true
+        done
+        #size=`parted -s $d print | grep Disk | awk '{print $NF}'`
+        #parted -s $d mkpart primary 0 $size
+        #mkfs.xfs -f ${d}1
+done
+
+exit 0
+

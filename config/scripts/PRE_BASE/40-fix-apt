@@ -1,0 +1,4 @@
+#!/bin/sh
+fcopy -ir /etc
+fcopy -ir /root
+

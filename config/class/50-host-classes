@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# assign classes to hosts
+ifclass PRE_BASE || echo PRE_BASE
+
+# use a list of classes for our demo machine
+case $HOSTNAME in
+    fai|fai2)
+	echo "BASE DEBIAN LVM_SMALL FAI";;
+    desktop)
+	echo "BASE DEBIAN LVM X WIFI NVIDIA" ;;
+esac
+
+(ifclass I386 || ifclass AMD64) && echo GRUB_PC 

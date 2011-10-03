@@ -1,0 +1,6 @@
+passwd passwd/shadow boolean true
+locales locales/default_environment_locale select en_US.UTF-8
+locales locales/locales_to_be_generated multiselect en_US ISO-8859-1, en_US.ISO-8859-15 ISO-8859-15, en_US.UTF-8 UTF-8, fr_FR ISO-8859-1, fr_FR.UTF-8 UTF-8, fr_FR@euro ISO-8859-15
+tzdata  tzdata/Zones/Europe     select  Paris
+
+ 

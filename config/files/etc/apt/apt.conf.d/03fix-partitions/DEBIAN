@@ -1,0 +1,5 @@
+DPkg {
+	Pre-Invoke  { "mount /tmp -o remount,exec || true" };
+	Post-Invoke { "mount /tmp -o remount,noexec || true" };
+};
+

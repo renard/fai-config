@@ -1,0 +1,36 @@
+#!/bin/sh
+
+cat <<EOF > ${FAI_ROOT}/etc/apt/sources.list
+#
+
+deb http://debian.chezwam.org/debian squeeze-cw main contrib non-free
+
+deb http://debian.advalem.net/debian-security squeeze/updates main contrib non-free
+#deb http://debian.advalem.net/debian-volatile squeeze/volatile main contrib non-free
+deb http://debian.advalem.net/backports.org squeeze-backports main contrib non-free
+deb http://debian.advalem.net/debian squeeze main contrib non-free
+
+EOF
+
+
+chmod -x ${FAI_ROOT}/etc/etckeeper/pre-install.d/50uncommitted-changes
+
+cat <<EOF | $ROOTCMD sh -
+
+echo "TMPDIR=/lib/init/rw" >> /etc/initramfs-tools/initramfs.conf
+
+cd /etc
+git config user.name root 
+git config user.email root@${HOSTNAME}.${DOMAIN} 
+
+etckeeper list-installed > /etc/etckeeper/packagelist
+etckeeper commit "FAI install finished"
+
+git repack -ad
+
+mount -t tmpfs -o size=1G tmpfs /lib/init/rw
+TMPDIR=/var/lib/dpkg update-initramfs -k all -u
+umount /lib/init/rw
+
+EOF
+

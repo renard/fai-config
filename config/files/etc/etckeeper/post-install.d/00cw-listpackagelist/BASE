@@ -1,0 +1,5 @@
+#!/bin/sh
+# This list will be later used when committing.
+mkdir -p /etc/etckeeper
+etckeeper list-installed > /etc/etckeeper/packagelist
+
