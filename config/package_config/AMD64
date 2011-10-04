@@ -6,6 +6,5 @@ PACKAGES aptitude AMD64
  initramfs-tools/squeeze-backports
  linux-image-2.6-amd64/squeeze-backports
  firmware-linux-nonfree/squeeze-backports
-  firmware-iwlwifi/squeeze-backports
  #firmware-bnx2/squeeze-backports
  
