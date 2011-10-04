@@ -4,3 +4,5 @@
 
 (ifclass LVM_CRYPYO || ifclass LVM_CRYPTO_XFS) && echo LVM
 (ifclass LVM_CRYPYO || ifclass LVM_CRYPTO_XFS) && echo CRYPTO
+
+exit 0

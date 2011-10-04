@@ -12,3 +12,5 @@ case $HOSTNAME in
 esac
 
 (ifclass I386 || ifclass AMD64) && echo GRUB_PC 
+
+exit 0
