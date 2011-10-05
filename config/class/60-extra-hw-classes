@@ -1,0 +1,4 @@
+#!/bin/sh
+
+
+lspci | grep -q nVidia && echo NVIDIA
