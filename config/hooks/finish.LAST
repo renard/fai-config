@@ -29,7 +29,7 @@ etckeeper commit "FAI install finished"
 git repack -ad
 
 mount -t tmpfs -o size=1G tmpfs /lib/init/rw
-TMPDIR=/var/lib/dpkg update-initramfs -k all -u
+TMPDIR=/var/init/rw update-initramfs -k all -u
 umount /lib/init/rw
 
 EOF
