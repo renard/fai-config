@@ -2,5 +2,3 @@
 
 [ -s $target/etc/kernel-img.conf ] || fcopy -Bi /etc/kernel-img.conf
 
-wget -q -O- http://debian.chezwam.org/key.gpg | $ROOTCMD apt-key add -
-$ROOTCMD apt-get update
