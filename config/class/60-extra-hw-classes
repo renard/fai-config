@@ -2,3 +2,5 @@
 
 
 lspci | grep -q nVidia && echo NVIDIA
+
+exit 0
