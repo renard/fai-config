@@ -1,0 +1,44 @@
+#! /bin/bash
+
+# When run from cdrom no network is needed from here.
+# This is file is an aweful hack but works
+
+# grub-pc need both /proc and /dev mounted in /target chroot
+# when performing no network installation
+mount -o bind /proc $FAI_ROOT/proc
+mount -o bind /dev $FAI_ROOT/dev
+
+# sometimes cskoeln entry is not correctly defined (main, contrib an
+# non-free maight be defined twice)
+set -x
+cat <<EOF > $FAI_ROOT/etc/apt/sources.list 
+deb file:/media/mirror cskoeln main contrib non-free
+EOF
+
+# Make sure apt is correctly configured before runnin apt
+cp /etc/apt/apt.conf.d/* $FAI_ROOT/etc/apt/apt.conf.d/
+
+# cat <<EOF > $FAI_ROOT/etc/apt/apt.conf.d/10fai
+# APT::Get::AllowUnauthenticated "true";
+# Aptitude::CmdLine::Ignore-Trust-Violations yes;
+# EOF
+
+
+#ln -nfs cskoeln /media/mirror/dists/squeeze-backports
+#ln -nfs cskoeln /media/mirror/dists/squeeze-cw
+
+# Remove all release specific information since fai-mirror factorize all
+# release into "cskoeln"
+for f in `find /var/lib/fai/config/package_config -not -type d -not -name '*.asc'`; do
+    sed -i 's,/[^[:space:]]\+,,g' $f
+done
+
+# Add some specific repositories keys
+cat /var/lib/fai/config/package_config/*.asc | $ROOTCMD apt-key add -
+# update apt package index.
+$ROOTCMD apt-get update
+
+
+# do not update apt-configuration via the network
+skiptask prepareapt
+skiptask updatebase
