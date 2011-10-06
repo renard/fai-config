@@ -1,0 +1,5 @@
+PACKAGES aptitude
+  make
+  fai-server/squeeze-cw
+  reprepro
+  genisoimage
