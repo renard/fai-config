@@ -1,0 +1,34 @@
+#
+# Tuning for heavy network usage
+#
+
+# more files and shared memory
+fs.file-max = 2097152
+kernel.shmmax = 1073741824
+
+# do not advertize vips on real ethX
+net.ipv4.conf.all.arp_ignore = 1
+net.ipv4.conf.all.arp_announce = 2
+
+# no reverse path filtering
+net.ipv4.conf.default.rp_filter = 0
+
+# redirects are evil
+net.ipv4.conf.all.accept_redirects = 0
+
+# backlog used by accept() syscall
+net.core.somaxconn = 4096
+net.ipv4.tcp_max_syn_backlog = 4096
+net.core.netdev_max_backlog = 2500
+
+# tuning socket memory and port range
+net.ipv4.ip_local_port_range = 10000 65000
+net.ipv4.tcp_rmem = 4096 135168 25165824
+net.core.rmem_max = 25165824
+net.core.rmem_default = 135168
+net.ipv4.tcp_wmem = 4096 65536 25165824
+net.core.wmem_max = 25165824
+net.core.wmem_default = 65536
+net.core.optmem_max = 25165824
+net.ipv4.tcp_tw_recycle = 1
+net.ipv4.tcp_tw_reuse = 1  
