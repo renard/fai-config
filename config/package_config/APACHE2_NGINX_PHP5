@@ -4,3 +4,5 @@ PACKAGES aptitude
   memcached
   php5-memcache
   php5-xcache
+  nginx/squeeze-backports
+  rinetd
