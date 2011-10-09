@@ -29,5 +29,6 @@ PACKAGES aptitude
   tcpdump
   mtr-tiny
   tasksel- tasksel-data-
-  nano-
+  vim
+  nano
   gawk mawk-
