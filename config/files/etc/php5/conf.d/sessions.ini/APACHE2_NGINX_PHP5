@@ -1,0 +1,4 @@
+[Session]
+; Handler used to store/retrieve data.
+session.save_handler = memcache
+session.save_path = "tcp://127.0.0.1:11211"

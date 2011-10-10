@@ -1,0 +1,10 @@
+[PHP]
+
+expose_php = Off
+max_execution_time = 300
+max_input_time = 300
+memory_limit = 256M
+register_globals = Off
+post_max_size = 100M
+magic_quotes_gpc = On
+upload_max_filesize = 90M

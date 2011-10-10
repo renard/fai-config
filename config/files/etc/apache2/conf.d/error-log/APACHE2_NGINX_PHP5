@@ -1,0 +1,34 @@
+# Allow error to be logged to a remote host using rsyslog
+#
+# Put in /etc/rsyslog.d/apache.conf 
+#  local2.*	@10.1.2.3
+#  if $programname == 'apache2' then ~ & ~
+#
+
+#
+# On the remote rsyslog server put something like
+#
+#  /etc/rsyslog.d/0server
+#
+# $ModLoad imudp
+# $UDPServerRun 514
+# $AllowedSender UDP, 127.0.0.1, 10.1.0.0/16, *.example.com
+#
+#  /etc/rsyslog.d/remote-apache
+#
+#  $template vip1,"/var/log/hosts/front/vip1.log"
+#  $template vip2,"/var/log/hosts/front/vip2.log"
+#
+# if  $fromhost == 'front01.example.com' \
+#  or $fromhost == 'front02.example.com' \
+#  or $fromhost == 'front03.example.com' \
+#   then ?vip1;RSYSLOG_TraditionalFileFormat 
+# & ~
+#
+# if  $fromhost == 'front04.example.com' \
+#  or $fromhost == 'front05.example.com' \
+#  or $fromhost == 'front06.example.com' \
+#   then ?vip1;RSYSLOG_TraditionalFileFormat 
+# & ~
+
+ErrorLog syslog:local2

@@ -1,0 +1,28 @@
+# Local security configuration
+
+KeepAlive Off
+
+LogFormat "%{X-Forwarded-For}i %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" varnishcombined
+
+DirectoryIndex index.php index.php3 index.html index.htm
+
+
+UseCanonicalName On
+DefaultType text/plain
+HostnameLookups Off
+
+# Disable Etag because :
+#  1. Inodes changes for files on the differents servers in the cluster
+#  2. It is redundant with Last-Modified
+#  3. It is bogus with gzip (and the fix for mod_deflate is not really working)
+FileETag None
+
+
+<Directory />
+	Options FollowSymLinks
+	AllowOverride None
+</Directory>
+
+<FilesMatch "\.(bak|old|inc|ini|backup|php[^3].*|php3.+|pl.*|cgi.*|pm.*)$">
+        deny from all
+</FilesMatch>

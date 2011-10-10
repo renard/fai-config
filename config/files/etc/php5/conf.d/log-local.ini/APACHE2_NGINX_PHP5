@@ -1,0 +1,5 @@
+[PHP]
+error_reporting  =  E_ALL & ~E_NOTICE
+display_errors = Off
+log_errors = On
+;error_log = syslog
