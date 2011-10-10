@@ -1,0 +1,8 @@
+# Redirect application.example.com to https://ssl.example.com:443/application
+#server {
+#	listen 80;
+#	server_name	application.example.com;
+#	location / {
+#		 rewrite ^(.*) https://sslexample.com:443/application$1 redirect;
+#	}
+#}
