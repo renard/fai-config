@@ -1,0 +1,28 @@
+[mysqld]
+
+server-id=1234
+master-host=REMOTE-HOST
+
+master-user=USER
+master-password=PASSWORD
+master-port=3306
+max-relay-log-size=200M
+
+#binlog-ignore-db=mysql
+#binlog-ignore-db=information_schema
+#relay-log-index=/var/log/mysql/relaylogs/relay.index
+#relay-log-info-file=/var/log/mysql/relaylogs/relay.info
+#relay-log=/var/log/mysql/relaylogs/relay
+#relay_log_space_limit=1000M
+slave-skip-errors=1062,1051,1053,1022,1146,1050,1049
+#log_bin                 = /var/log/mysql/binlogs/mysql-bin.log
+#log-slave-update
+expire_logs_days        = 10
+max_binlog_size         = 100M
+
+
+# example of per database configuration for OpenX
+# replicate-do-db = openx287
+# replicate-wild-ignore-table = openx287.%data_%
+# replicate-wild-ignore-table = openx287.%tmp_%
+# replicate-wild-ignore-table = openx287.%lb_local%

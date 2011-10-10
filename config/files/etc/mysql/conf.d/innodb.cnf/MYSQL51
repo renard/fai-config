@@ -1,0 +1,11 @@
+[mysqld]
+innodb_flush_log_at_trx_commit=0
+innodb_fast_shutdown
+innodb_file_per_table
+
+# Increase this variable in necessary
+innodb_buffer_pool_size=2G
+innodb_additional_mem_pool_size=256M
+innodb_log_file_size=100M
+innodb_lock_wait_timeout=10
+innodb_thread_concurrency=16

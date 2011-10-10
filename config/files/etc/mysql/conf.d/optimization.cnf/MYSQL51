@@ -1,0 +1,23 @@
+[mysqld]
+interactive-timeout=600
+wait-timeout=120
+#wait_timeout=31536000
+#interactive_timeout=31536000
+
+long-query-time=10
+log_error=/var/log/mysql/mysql.err
+back_log=4096
+
+tmp_table_size = 128M
+open_files_limit = 32768
+join_buffer_size=134217728
+table_cache = 2048
+thread_cache_size = 200
+query_cache_size = 1G
+query_cache_limit = 64MB
+sort_buffer_size = 512M
+read_buffer_size = 8M
+sort_buffer_size = 64M
+
+max_error_count=65535
+connect_timeout=30
