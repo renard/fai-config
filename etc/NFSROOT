@@ -18,6 +18,7 @@ PACKAGES aptitude
   linux-base/squeeze-backports
   initramfs-tools/squeeze-backports
   iotop
+  perl-base/squeeze-updates
 
 PACKAGES aptitude AMD64
   grub-pc lilo
