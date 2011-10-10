@@ -1,6 +1,4 @@
 PACKAGES aptitude
-  cryptsetup
-  lvm2
   busybox
   sudo
   cron
