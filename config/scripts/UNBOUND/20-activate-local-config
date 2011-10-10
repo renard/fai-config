@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ainsl $FAI_ROOT/etc/unbound/unbound.conf 'include: "/etc/unbound/unbound-local.conf"'

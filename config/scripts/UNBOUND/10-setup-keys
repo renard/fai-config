@@ -1,0 +1,3 @@
+#!/bin/sh
+
+$ROOTCMD /usr/sbin/unbound-control-setup
