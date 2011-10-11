@@ -19,5 +19,5 @@ sort_buffer_size = 512M
 read_buffer_size = 8M
 sort_buffer_size = 64M
 
-max_error_count=65535
+max_error_count=9223372036854775807
 connect_timeout=30

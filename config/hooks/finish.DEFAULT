@@ -1,0 +1,14 @@
+#!/bin/sh
+
+NOW=$(date)
+
+cat <<EOF >> /root/README
+
+Welcome to your new FAI installed host.
+
+This host has been installed on $NOW
+using FAI with classes:
+
+$fai_classes
+
+EOF

@@ -1,0 +1,32 @@
+#!/bin/sh
+
+cat <<EOF >> /root/README
+
+NGINX
+-----
+
+Public web interfaces are served by Nginx acting like a proxy to the Apache
+server.
+
+APACHE
+------
+
+Apache is listening on port 8080 on all interfaces. This might be usefull
+for web debuging and monitoring purposes.
+
+If you need to change that, refere to the /etc/apache2/ports.conf file and
+files located under /etc/apache2/sites-available.
+
+PHP5
+----
+
+PHP5 has been setup to work with Xcache
+accelerator. /etc/php5/conf.d/xcache.ini. The Xcache managment interface is
+located at http://server/xcache with default access set to admin /
+admin. This MUST be changed in /etc/php5/conf.d/xcache.ini.
+
+Sessions are handled by memcache on tcp://127.0.0.1:11211. By default
+memcache has been configured to use 64Mb of memory. This can be changed in
+/etc/memcached.conf.
+
+EOF

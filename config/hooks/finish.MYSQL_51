@@ -1,0 +1,45 @@
+#!/bin/sh
+
+cat <<EOF >> /root/README
+
+MYSQL
+-----
+
+MySQL server has been installed on this server. All database pathes are left
+unchanged via symlinks to /srv/mysql.
+
+Old password scheme are disabled in /etc/mysql/conf.d/old_passwords.cnf.
+
+InnoDB configuration is made in /etc/mysql/conf.d/innodb.cnf. The value that
+should be changed according RAM size is innodb_buffer_pool_size.
+
+Some optimization have been made in /etc/mysql/conf.d/optimization.cnf.
+
+The MySQL replication has been setup in
+/etc/mysql/conf.d/replication.cnf. For this to work you should configure
+master parameters. See web pages
+http://dev.mysql.com/doc/refman/5.1/en/replication.html.
+
+DO NOT FORGET TO CHANGE THE server-id.
+
+skip-name-resolve has been activated in /etc/mysql/conf.d/skip-resolv.cnf to
+prevent from resolving host when connecting to the mysql server.
+
+By default MySQL listens on localhost (127.0.0.1) you can either change the
+bind-address in /etc/mysql/my.cnf and/or use rinetd to configure MySQL on
+serveral IPs/ports.
+
+If MySQL listens on 10.1.2.3 following line should have been defined in
+/etc/mysql/my.cnf:
+
+  [mysqld]
+  bind-address = 10.1.2.3
+
+If you also need MySQL to listen on 127.0.0.1 then add this line in your
+/etc/rinetd.conf:
+
+  127.0.0.1 3306 10.1.2.3 3306
+
+Please note that MySQL credentials should configured as well.
+
+EOF

@@ -1,3 +1,0 @@
-Install debian packages
-
-wget -O /etc/apt/sources.list http://debian.chezwam.org/sources.list

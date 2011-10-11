@@ -1,0 +1,21 @@
+#!/bin/sh
+
+NOW=$(date)
+
+cat <<EOF >> /root/README
+
+UNBOUND
+-------
+
+unbound(8) has been configured in /etc/unbound. Default unmodified package
+configuration file is located in /etc/unbound/unbound.conf. A specific local
+configuration is defined in /etc/unbound/unbound-local.conf.
+
+By default unbound listen on localhost (127.0.0.1). If you need unbound to
+listend on other interfaces, simply add "interface: aaa.bbb.ccc.ddd" in the
+"server:" parameter.
+
+Remote control as also been activated on localhost in the "remote-contol:"
+parameter.
+
+EOF
