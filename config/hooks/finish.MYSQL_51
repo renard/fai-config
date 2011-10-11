@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cat <<EOF >> /root/README
+cat <<EOF >> $FAI_ROOT/root/README
 
 MYSQL
 -----
@@ -41,5 +41,9 @@ If you also need MySQL to listen on 127.0.0.1 then add this line in your
   127.0.0.1 3306 10.1.2.3 3306
 
 Please note that MySQL credentials should configured as well.
+
+Change the mysql password using:
+
+  mysqladmin password y0uRs3cr3tp@ssw0rd
 
 EOF

@@ -1,8 +1,6 @@
 #!/bin/sh
 
-NOW=$(date)
-
-cat <<EOF >> /root/README
+cat <<EOF >> $FAI_ROOT/root/README
 
 UNBOUND
 -------

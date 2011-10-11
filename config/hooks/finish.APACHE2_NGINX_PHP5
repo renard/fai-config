@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cat <<EOF >> /root/README
+cat <<EOF >> $FAI_ROOT/root/README
 
 NGINX
 -----

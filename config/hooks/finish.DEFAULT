@@ -2,7 +2,7 @@
 
 NOW=$(date)
 
-cat <<EOF >> /root/README
+cat <<EOF >> $FAI_ROOT/root/README
 
 Welcome to your new FAI installed host.
 
