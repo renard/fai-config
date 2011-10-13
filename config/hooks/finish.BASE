@@ -43,13 +43,20 @@ if test -n "$send_mail"; then
 fi
 --8<--
 
-Configure git in /etc:
+On remote server add create a bare repository:
+
+  git init --bare /path/git/`hostname --fqdn`.git
+
+On local server (`hostname --fqdn`) configure
+git repository in /etc:
 
   cd /etc
   git config --local --add etckeeper.recipent etckeeper@adm.exemple.com
   git config --local --add etckeeper.sender etckeeper@adm.exemple.com
   git config --local --add etckeeper.push 1
   git config --local --add etckeeper.send_email 1
+  git remote add origin gitserver:/path/git/`hostname --fqdn`.git
+  git push -u origin master
 
 
 EOF
