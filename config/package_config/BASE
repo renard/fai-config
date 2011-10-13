@@ -30,3 +30,4 @@ PACKAGES aptitude
   vim
   nano
   gawk mawk-
+  unzip
