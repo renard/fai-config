@@ -1,0 +1,55 @@
+#!/bin/sh
+
+
+cat <<EOF >> $FAI_ROOT/root/README
+
+ETCKEEPER
+---------
+
+etckeeper(1) has been configured to be run after apt operations. Please note
+that hand-installed packages (such as using dpkg(1)) are NOT handled by
+etckeeper.
+
+If you need to push packages to remote git repositories add this in
+/etc/.git/hooks/post-commit:
+
+--8<--
+#!/bin/sh
+
+sender=`git config --get etckeeper.sender`
+recipient=`git config --get etckeeper.recipient`
+push=`git config --get etckeeper.push`
+send_mail=`git config --get etckeeper.send_mail`
+
+if test -n "$push"; then
+    if test $push -gt 0; then
+        git push -q
+    fi
+fi
+
+if test -n "$send_mail"; then
+    if test $send_mail -gt 0; then
+
+        git format-patch --stdout --attach --subject-prefix="`hostname -s`" \
+            --to=$recipient HEAD@{1}..HEAD \
+            --add-header "X-Git-Host: `hostname -s`" \
+            --add-header "X-Git-FQDN: `hostname`" \
+            --add-header "X-Git-Type: etckeeper" \
+            | \
+            sed "s/^From: .* <.*>$/From: etckeeper on `hostname -s` <$sender>/" | \
+            sed "s/^From [0-9a-f]\{40\}/From $sender/" | \
+            sendmail -t
+    fi
+fi
+--8<--
+
+Configure git in /etc:
+
+  cd /etc
+  git config --local --add etckeeper.recipent etckeeper@adm.exemple.com
+  git config --local --add etckeeper.sender etckeeper@adm.exemple.com
+  git config --local --add etckeeper.push 1
+  git config --local --add etckeeper.send_email 1
+
+
+EOF
