@@ -5,9 +5,6 @@ disk_config disk1 bootable:1 disklabel:msdos fstabkey:uuid
 primary		/boot	256		ext3	rw,errors=remount-ro createopts="-L /boot -m 5"
 primary		-	0-		-	-
 
-disk_config cryptsetup
-luks:"test"     -		disk1.2		-	-
-
 disk_config lvm
 vg		vg00		disk1.2
 vg00-swap	swap		2GiB-4GiB	swap	sw

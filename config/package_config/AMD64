@@ -1,7 +1,5 @@
 PACKAGES aptitude AMD64
  grub-pc grub- grub-legacy- lilo-
- busybox
- dropbear
  linux-base/squeeze-backports
  initramfs-tools/squeeze-backports
  linux-image-2.6-amd64/squeeze-backports

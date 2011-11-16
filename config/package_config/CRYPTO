@@ -1,2 +1,4 @@
 PACKAGES aptitude
-  cryptsetup
+ cryptsetup
+ busybox
+ dropbear
