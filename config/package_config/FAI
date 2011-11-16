@@ -1,5 +1,9 @@
 PACKAGES aptitude
   make
+  approx
+  tftpd-hpa
+  syslinux
+  nfs-kernel-server
   fai-server/squeeze-cw
   reprepro
   genisoimage
