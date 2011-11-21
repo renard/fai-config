@@ -20,6 +20,7 @@ update-mirror:
 	fai-mirror -m 2000 -B -v -x NVIDIA,WIFI,X $(MY_MIRROR_PATH)
 
 cd:
+	mkdir -p isos
 	fai-cd -m $(MY_MIRROR_PATH) -f isos/debian-squeeze-cw.iso
 
 
