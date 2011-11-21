@@ -6,7 +6,7 @@
 NFSROOT=/srv/fai/nfsroot
 
 # TFTP directory for FAI files
-TFTPROOT=/srv/tftp/fai
+TFTPROOT=@@MY_FAI_NFS_ROOT@@
 
 # location of the configuration space on the install server
 FAI_CONFIGDIR=/srv/fai/config
@@ -16,7 +16,7 @@ FAI_CONFIGDIR=/srv/fai/config
 #NFSROOT_ETC_HOSTS="192.168.1.250 yourinstallserver"
 
 # Parameter for debootstrap: "<suite> <mirror>"
-FAI_DEBOOTSTRAP="squeeze http://192.168.101.5:9999/debian"
+FAI_DEBOOTSTRAP="squeeze http://@@MY_FAI_SERVER@@:9999/debian"
 
 # the encrypted (with md5 or crypt) root password on all install clients during
 # installation process; used when log in via ssh; default pw is: fai

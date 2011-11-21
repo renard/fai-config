@@ -7,8 +7,7 @@
 # nfs://<install server>/$FAI_CONFIGDIR
 # supported URL-types: nfs, file, cvs, cvs+ssh, svn+file, svn+http,
 # git, git+http, hg+http, tarball via http
-#FAI_CONFIG_SRC=nfs://yourservername/path/to/config/space
-FAI_CONFIG_SRC=nfs://192.168.101.5/srv/fai/config
+FAI_CONFIG_SRC=nfs://@@MY_FAI_SERVER@@@@MY_FAI_NFS_ROOT@@
 
 # LOGUSER: an account on the install server which saves all log-files
 # and which can change the kernel that is booted via network.
