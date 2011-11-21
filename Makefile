@@ -30,7 +30,7 @@ init: conf
 
 update-mirror:
 	rm -rf $(MY_MIRROR_PATH)/pool $(MY_MIRROR_PATH)/dists
-	fai-mirror -m 2000 -B -v -x NVIDIA,WIFI,X $(MY_MIRROR_PATH)
+	fai-mirror -m 2000 -B -v $(MY_IGNORE_CLASSES) $(MY_MIRROR_PATH)
 
 cd:
 	mkdir -p isos
