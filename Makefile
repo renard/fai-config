@@ -37,7 +37,7 @@ cd:
 	fai-cd -m $(MY_MIRROR_PATH) -f isos/debian-squeeze-cw.iso
 
 
-conf: $(shell find -type f -name '*.FAI_IN' | sed 's/\.FAI_IN//g')
+conf: $(shell find etc config -type f -name '*.FAI_IN' | sed 's/\.FAI_IN//g')
 %: %.FAI_IN $(MAKEFILES)
 	@echo "Generating $@"
 	@sed -e 's#@@MY_FAI_SERVER@@#$(MY_FAI_SERVER)#g' \
@@ -45,4 +45,4 @@ conf: $(shell find -type f -name '*.FAI_IN' | sed 's/\.FAI_IN//g')
 		< $< > $@
 
 clean:
-	@find -type f -name '*.FAI_IN' -print0 | sed 's/\.FAI_IN//g' | xargs -0 rm -f
+	@find etc config -type f -name '*.FAI_IN' -print0 | sed 's/\.FAI_IN//g' | xargs -0 rm -f
