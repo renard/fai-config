@@ -22,7 +22,7 @@ PACKAGES aptitude
   #ifenslave
   xfsprogs xfsdump
   lsof psmisc iotop screen
-  htop
+  htop iftop
   locate
   tcpdump
   mtr-tiny
