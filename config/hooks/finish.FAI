@@ -1,0 +1,43 @@
+#!/bin/sh
+
+cat <<EOF >> $FAI_ROOT/root/README
+
+FAI
+---
+
+fai is installed but NOT CONFIGURED.
+
+You can grab fai configuration files by using:
+
+
+  git clone https://github.com/renard/fai-config.git /srv/fai
+  rm /etc/fai
+  ln -fns /srv/fai/etc /etc/fai
+
+Configure local variables in /srv/fai/Makefile.conf.local. This file
+overrides /srv/fai/Makefile.conf.
+
+Basically only MY_INSTALL_IFACE should be changed.
+
+
+A DHCP server has beend installed. Please check both
+/etc/default/isc-dhcp-server and /etc/dhcp/dhcpd.conf.
+
+
+A tftpd-hpa server has been installed. Its configuration is in
+/etc/default/tftpd-hpa.
+You might want to change TFTP_ADDRESS variable.
+
+
+The approx(8) APT proxy server has been installed. Its configuration is in
+/etc/approx/approx.conf. 
+By default approx listen on all interfaces. To change that, you can edit
+/etc/inetd.conf and change line:
+
+    9999		stream	tcp	nowait	approx	/usr/sbin/approx /usr/sbin/approx
+
+By:
+
+    10.0.0.1:9999		stream	tcp	nowait	approx	/usr/sbin/approx /usr/sbin/approx
+
+EOF
