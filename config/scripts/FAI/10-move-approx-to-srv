@@ -1,0 +1,4 @@
+#!/bin/bash
+
+$ROOTCMD mv /var/cache/approx /srv
+$ROOTCMD ln -nfs /srv/approx /var/cache/approx

@@ -40,4 +40,10 @@ By:
 
     10.0.0.1:9999		stream	tcp	nowait	approx	/usr/sbin/approx /usr/sbin/approx
 
+
+A nfs-kernel-server has been installed. See /etc/exports for further
+informations. You might want to add "no_root_squash" option to all FAI
+exports (/srv/fai/config and /srv/fait/nfsroot).
+
+
 EOF

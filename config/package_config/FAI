@@ -7,3 +7,4 @@ PACKAGES aptitude
   fai-server/squeeze-cw
   reprepro
   genisoimage
+  memtest86+
