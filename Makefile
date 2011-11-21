@@ -1,6 +1,13 @@
 # Generic FAI makefile
 
 include Makefile.conf
+MAKEFILES := Makefile Makefile.conf
+
+# Makefile.conf.local can override some configuration variables.
+ifneq ($(wildcard Makefile.conf.local),)
+include Makefile.conf.local
+MAKEFILES += Makefile.conf.local
+endif
 
 all:
 
@@ -17,10 +24,11 @@ cd:
 
 
 conf: $(shell find -type f -name '*.FAI_IN' | sed 's/\.FAI_IN//g')
-%: %.FAI_IN Makefile.conf Makefile
-	sed -e 's#@@MY_FAI_SERVER@@#$(MY_FAI_SERVER)#g' \
+%: %.FAI_IN $(MAKEFILES)
+	@echo "Generating $@"
+	@sed -e 's#@@MY_FAI_SERVER@@#$(MY_FAI_SERVER)#g' \
 		-e 's#@@MY_FAI_NFS_ROOT@@#$(MY_FAI_NFS_ROOT)#g' \
 		< $< > $@
 
 clean:
-	find -type f -name '*.FAI_IN' -print0 | sed 's/\.FAI_IN//g' | xargs -0 rm -f
+	@find -type f -name '*.FAI_IN' -print0 | sed 's/\.FAI_IN//g' | xargs -0 rm -f
