@@ -20,7 +20,7 @@ subnet 192.168.101.0 netmask 255.255.255.0 {
 
 group {
       filename "fai/pxelinux.0";
-      option domain-name "install.chezwam.org";
+      option domain-name "install.example.conf";
 
       # installed vm hosts
       # 52:54:00:XX:XX:XX => QEMU prefix
