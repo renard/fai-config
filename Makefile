@@ -10,6 +10,19 @@ MAKEFILES += Makefile.conf.local
 endif
 
 all:
+help:
+	@echo "\n\
+Help for FAI helper\n\
+\n\
+Run make(1) with following arguments:\n\
+\n\
+ - clean:         Clean all generated files.\n\
+ - conf:          Create all configuration files from *.FAI_IN files.\n\
+ - init:          Create FAI environment.\n\
+ - update-mirror: Update debian mirror for CD generation.\n\
+ - cd:            Create bootable CD.\n\
+ - help:          This help screen,\n\
+	"
 
 init: conf
 	fai-setup -v
