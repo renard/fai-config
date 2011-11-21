@@ -1,0 +1,31 @@
+# Example with a 4-HD server using RAID10 for /boot and RAID0 for lvm
+
+disk_config disk1 bootable:1 disklabel:msdos fstabkey:uuid
+primary         -       128             -       -
+primary         -       0-              -       -
+
+disk_config disk2 bootable:1 disklabel:msdos fstabkey:uuid
+primary         -       128             -       -
+primary         -       0-              -       -
+
+disk_config disk3 bootable:1 disklabel:msdos fstabkey:uuid
+primary         -       128             -       -
+primary         -       0-              -       -
+
+disk_config disk4 bootable:1 disklabel:msdos fstabkey:uuid
+primary         -       128             -       -
+primary         -       0-              -       -
+
+disk_config raid
+raid10  /boot   disk1.1,disk2.1,disk3.1,disk4.1         ext3    rw,errors=remount-ro createopts="-L /boot -m 5"
+raid0   -       disk1.2,disk2.2,disk3.2,disk4.2         -       -
+
+disk_config lvm
+vg              vg00            md1
+vg00-swap       swap            2GiB-4GiB       swap    sw
+vg00-root       /               4GiB            xfs     rw createopts="-f -b size=4096 -L /"
+vg00-tmp        /tmp            1GiB-2GiB       xfs     rw,noatime,nosuid,nodev,noexec createopts="-f -b size=4096  -L /tmp"
+vg00-usr        /usr            4GiB            xfs     rw createopts="-f -b size=4096 -L /usr"
+vg00-var        /var            4GiB            xfs     rw createopts="-f -b size=4096 -L /var"
+vg00-var_tmp    /var/tmp        1GiB-2GiB       xfs     rw,noatime,nosuid,nodev,noexec createopts="-f -b size=4096 -L /var/tmp"
+vg00-srv        /srv            0-100%          xfs     rw createopts="-f -b size=4096 -L /srv"
