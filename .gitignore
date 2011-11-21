@@ -1,3 +1,4 @@
 /mirror
 /nfsroot
 /isos
+/Makefile.conf.local
