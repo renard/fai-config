@@ -2,7 +2,8 @@
 
 (ifclass I386 || ifclass AMD64) && echo GRUB_PC 
 
-(ifclass LVM_CRYPTO || ifclass LVM_CRYPTO_XFS) && echo LVM
+(ifclass LVM_XFS || ifclass LVM_CRYPTO || ifclass LVM_CRYPTO_XFS) && echo LVM
 (ifclass LVM_CRYPTO || ifclass LVM_CRYPTO_XFS) && echo CRYPTO
+(ifclass LVM_RAID0 ) && echo RAID
 
 exit 0

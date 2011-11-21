@@ -8,7 +8,7 @@ case $HOSTNAME in
     fai|fai2)
 	echo "BASE DEBIAN LVM_SMALL FAI";;
     desktop)
-	echo "BASE DEBIAN LVM X WIFI NVIDIA" ;;
+	echo "BASE DEBIAN LVM_XFS X WIFI NVIDIA" ;;
 esac
 
 exit 0
