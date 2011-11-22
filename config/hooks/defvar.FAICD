@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# This should be run AFTER FAICD class is defined.
+
+chmod 600 /etc/ssh/ssh_host_*_key
+/etc/init.d/sshd restart
