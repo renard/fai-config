@@ -30,14 +30,14 @@ fi
 if test -n "$send_mail"; then
     if test $send_mail -gt 0; then
 
-        git format-patch --stdout --attach --subject-prefix="`hostname -s`" \
-            --to=$recipient HEAD@{1}..HEAD \
-            --add-header "X-Git-Host: `hostname -s`" \
-            --add-header "X-Git-FQDN: `hostname`" \
-            --add-header "X-Git-Type: etckeeper" \
-            | \
-            sed "s/^From: .* <.*>$/From: etckeeper on `hostname -s` <$sender>/" | \
-            sed "s/^From [0-9a-f]\{40\}/From $sender/" | \
+        git format-patch --stdout --attach --subject-prefix="`hostname -s`" \\
+            --to=$recipient HEAD@{1}..HEAD \\
+            --add-header "X-Git-Host: `hostname -s`" \\
+            --add-header "X-Git-FQDN: `hostname`" \\
+            --add-header "X-Git-Type: etckeeper" \\
+            | \\
+            sed "s/^From: .* <.*>$/From: etckeeper on `hostname -s` <$sender>/" | \\
+            sed "s/^From [0-9a-f]\{40\}/From $sender/" | \\
             sendmail -t
     fi
 fi
