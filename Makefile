@@ -46,7 +46,7 @@ conf: $(shell find etc config -type f -name '*.FAI_IN' | sed 's/\.FAI_IN//g') gr
 
 grub: etc/grub.cfg
 	@for f in config/files/etc/network/interfaces/*; do \
-		ip=`/sbin/ifup -n -v -i $$f  -a  2>&1 | grep -B 1 'route add default' | tr  '\n' ' ' | sed -n 's/ifconfig \([^ ]\+\) \([^ ]\+\) netmask \([^ ]\+\) \+.*default gw \([^ ]\+\) .*/ip=\2::\4:\1::\3:none/p'` ; \
+		ip=`/sbin/ifup --force -n -v -i $$f  -a  2>&1 | grep -B 1 'route add default' | tr  '\n' ' ' | sed -n 's/ifconfig \([^ ]\+\) \([^ ]\+\) netmask \([^ ]\+\) \+.*default gw \([^ ]\+\) .*/ip=\2::\4:\1::\3:none/p'` ; \
 		h=`basename $$f` ; \
 		echo "\n\
 menuentry \"Install server - $$h\" {\n\
