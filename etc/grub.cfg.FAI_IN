@@ -33,7 +33,7 @@ menuentry "Boot OS of first partition on first disk" {
     chainloader +1
 }
 
-menuentry "Memtest" {
+menuentry "Memtest86+" {
 	set gfxpayload=1024x768
-	linux /boot/memtest86+.bin
+	linux16 /boot/memtest86+.bin
 }
