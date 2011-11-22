@@ -7,4 +7,5 @@
 config/files/etc/apt/sources.list/DEBIAN
 etc/apt/sources.list
 etc/fai.conf
+etc/grub.cfg
 etc/make-fai-nfsroot.conf
