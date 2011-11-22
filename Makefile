@@ -44,9 +44,14 @@ conf: $(shell find etc config -type f -name '*.FAI_IN' | sed 's/\.FAI_IN//g') gr
 		-e 's#@@MY_FAI_NFS_ROOT@@#$(MY_FAI_NFS_ROOT)#g' \
 		< $< > $@
 
+
+# kernel/Documentation/filesystems/nfs/nfsroot.txt
+# ip=<client-ip>:<server-ip>:<gw-ip>:<netmask>:<hostname>:<device>:<autoconf>
+# ip=10.29.0.220::10.29.0.1:255.255.255.0::eth0:none
+# ifconfig eth0(1) 10.29.0.220(2) netmask 255.255.255.0(3)             up  route add default gw 10
 grub: etc/grub.cfg
 	@for f in config/files/etc/network/interfaces/*; do \
-		ip=`/sbin/ifup --force -n -v -i $$f  -a  2>&1 | grep -B 1 'route add default' | tr  '\n' ' ' | sed -n 's/ifconfig \([^ ]\+\) \([^ ]\+\) netmask \([^ ]\+\) \+.*default gw \([^ ]\+\) .*/ip=\2::\4:\1::\3:none/p'` ; \
+		ip=`/sbin/ifup --force -n -v -i $$f  -a  2>&1 | grep -B 1 'route add default' | tr  '\n' ' ' | sed -n 's/ifconfig \([^ ]\+\) \([^ ]\+\) netmask \([^ ]\+\) \+.*default gw \([^ ]\+\) .*/ip=\1:\2:\3:\4:::none/p'` ; \
 		h=`basename $$f` ; \
 		echo "\n\
 menuentry \"Install server - $$h\" {\n\
