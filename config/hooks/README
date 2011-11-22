@@ -4,14 +4,24 @@ Class order:
   - setup
   - defclass
   - defvar
+  - action (*)
+  - sysinfo (*)
   - install
+  - softupdate (*)
   - partition
   - mountdisks
   - extrbase
   - mirror
+  - debconf
   - prepareapt
   - updatebase
   - instsoft
-  - debconf
+  - configure
+  - tests
+  - finish
+  - chboot
+  - savelog
+  - faiend
+
 
 See http://fai-project.org/fai-guide/ar01s07.html#hooks
