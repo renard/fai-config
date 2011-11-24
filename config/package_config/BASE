@@ -31,3 +31,4 @@ PACKAGES aptitude
   nano
   gawk mawk-
   unzip
+  snoopylogger
