@@ -22,7 +22,7 @@ cd ${SRC}
 exclude=${DST}/.git/info/exclude
 
 
-rm -fv "${exlude}"
+rm -fv "${exclude}"
 for f in $(git ls-files); do
     d=$(dirname ${f})
     fn=$(basename "${f}")
