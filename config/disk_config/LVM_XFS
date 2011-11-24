@@ -13,5 +13,5 @@ vg00-tmp	/tmp		1GiB-2GiB	xfs	rw,noatime,nosuid,nodev,noexec createopts="-f -b si
 vg00-usr	/usr		4GiB		xfs	rw createopts="-f -b size=4096 -L /usr"
 vg00-var	/var		4GiB		xfs	rw createopts="-f -b size=4096 -L /var"
 vg00-var_tmp	/var/tmp	1GiB-2GiB	xfs	rw,noatime,nosuid,nodev,noexec createopts="-f -b size=4096 -L /var/tmp"
-vg00-srv 	/srv		0-100%		xfs	rw createopts="-f -b size=4096 -L /srv"
+vg00-srv 	/srv		0-70%		xfs	rw createopts="-f -b size=4096 -L /srv"
 
