@@ -40,9 +40,18 @@ cd:
 conf: $(shell find etc config -type f -name '*.FAI_IN' | sed 's/\.FAI_IN//g') grub
 %: %.FAI_IN $(MAKEFILES)
 	@echo "Generating $@"
-	@sed -e 's#@@MY_FAI_SERVER@@#$(MY_FAI_SERVER)#g' \
+	@sed \
+		-e 's#@@MY_MIRROR_PATH@@#$(MY_MIRROR_PATH)#g' \
+		-e 's#@@MY_INSTALL_IFACE@@#$(MY_INSTALL_IFACE)#g' \
+		-e 's#@@MY_FAI_SERVER@@#$(MY_FAI_SERVER)#g' \
+		-e 's#@@MY_NFSROOT@@#$(MY_NFSROOT)#g' \
+		-e 's#@@MY_FAI_CONFIG_DIR@@#$(MY_FAI_CONFIG_DIR)#g' \
+		-e 's#@@MY_TFTPROOT@@#$(MY_TFTPROOT)#g' \
+		-e 's#@@MY_MNTPOINT@@#$(MY_MNTPOINT)#g' \
+		-e 's#@@MY_FAI@@#$(MY_FAI)#g' \
 		-e 's#@@MY_FAI_NFS_ROOT@@#$(MY_FAI_NFS_ROOT)#g' \
-		< $< > $@
+		-e 's#@@MY_ROOTPW@@#$(MY_ROOTPW)#g' \
+	     < $< > $@
 
 
 # kernel/Documentation/filesystems/nfs/nfsroot.txt
