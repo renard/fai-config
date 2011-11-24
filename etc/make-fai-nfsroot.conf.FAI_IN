@@ -20,7 +20,7 @@ FAI_DEBOOTSTRAP="squeeze http://@@MY_FAI_SERVER@@:9999/debian"
 
 # the encrypted (with md5 or crypt) root password on all install clients during
 # installation process; used when log in via ssh; default pw is: fai
-FAI_ROOTPW='@@FAI_ROOTPW@@'
+FAI_ROOTPW='@@MY_FAI_ROOTPW@@'
 
 # location of a identity.pub file; this user can log to the install
 # clients in as root without a password; only useful with FAI_FLAGS="sshd"

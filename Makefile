@@ -50,7 +50,7 @@ conf: $(shell find etc config -type f -name '*.FAI_IN' | sed 's/\.FAI_IN//g') gr
 		-e 's#@@MY_MNTPOINT@@#$(MY_MNTPOINT)#g' \
 		-e 's#@@MY_FAI@@#$(MY_FAI)#g' \
 		-e 's#@@MY_FAI_NFS_ROOT@@#$(MY_FAI_NFS_ROOT)#g' \
-		-e 's#@@MY_ROOTPW@@#$(MY_ROOTPW)#g' \
+		-e 's#@@MY_FAI_ROOTPW@@#$(MY_FAI_ROOTPW)#g' \
 	     < $< > $@
 
 
