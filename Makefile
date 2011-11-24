@@ -39,6 +39,7 @@ cd:
 
 conf: $(shell find etc config -type f -name '*.FAI_IN' | sed 's/\.FAI_IN//g') grub
 %: %.FAI_IN $(MAKEFILES)
+	@./update-with-local-files
 	@echo "Generating $@"
 	@sed \
 		-e 's#@@MY_MIRROR_PATH@@#$(MY_MIRROR_PATH)#g' \
