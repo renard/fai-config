@@ -3,10 +3,10 @@
 
 # directory on the install server where the nfsroot for FAI is
 # created, approx size: 390MB, also defined in bootptab or dhcp.conf
-NFSROOT=/srv/fai/nfsroot
+NFSROOT=@@MY_FAI_NFS_ROOT@@
 
 # TFTP directory for FAI files
-TFTPROOT=@@MY_FAI_NFS_ROOT@@
+TFTPROOT=/srv/tftp/fai
 
 # location of the configuration space on the install server
 FAI_CONFIGDIR=/srv/fai/config
