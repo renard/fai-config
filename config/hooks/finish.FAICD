@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Since mdadm has been removed during installation, it has to be
+# reinstalled.
+run-parts /var/lib/fai/config/scripts/FAICD

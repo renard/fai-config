@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# mdadm version is forced from backports which is broken (11/25/2011)
+#
+
+$ROOTCMD mount -o remount,exec /tmp || true
+ifclass RAID && $ROOTCMD dpkg --force-depends -i $MNTPOINT/pool/main/m/mdadm/*.deb 
+ifclass LVM && $ROOTCMD dpkg --force-depends -i $MNTPOINT/pool/main/l/lvm2/*.deb
