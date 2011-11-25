@@ -9,6 +9,8 @@ case $HOSTNAME in
 	echo "BASE DEBIAN LVM_SMALL FAI";;
     desktop)
 	echo "BASE DEBIAN LVM_XFS X WIFI NVIDIA" ;;
+    *)
+	echo "BASE DEBIAN LVM_XFS";;
 esac
 
 exit 0
