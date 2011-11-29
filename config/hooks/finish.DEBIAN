@@ -1,0 +1,13 @@
+#!/bin/sh
+
+
+cat <<EOF >> $FAI_ROOT/root/README
+
+CRONTAB
+-------
+
+Crontab in /etc/crontab are randomly delayed on purpose to prevent all
+servers from running their jobs at the same time on all machine from the
+network.
+
+EOF
