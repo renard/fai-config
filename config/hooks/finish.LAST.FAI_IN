@@ -15,6 +15,32 @@ EOF
 
 chmod -x ${FAI_ROOT}/etc/etckeeper/pre-install.d/50uncommitted-changes
 
+cat <<EOF > $FAI_ROOT/etc/.git/hooks/post-commit
+#!/bin/sh
+
+test \`git remote -v | wc -l\` -gt 0 && git push -q
+EMAIL=@@MY_ETCKEEPER_EMAIL@@
+
+test -z "\${EMAIL}" && exit 0
+
+S_HOST=\`hostname --short\`
+L_HOST=\`hostname --fqdn\`
+
+
+git format-patch --stdout --attach --subject-prefix="\$S_HOST" \\
+   --to=\$EMAIL HEAD@{1}..HEAD \\
+   --add-header "X-Git-Host: \$S_HOST" \\
+   --add-header "X-Git-FQDN: \$L_HOST" \\
+   --add-header "X-Git-Type: etckeeper" \\
+   | \\
+   sed "s/^From: .* <.*>\\$/From: etckeeper on \$S_HOST <\$EMAIL>/" | \\
+   sed "s/^From [0-9a-f]\{40\}/From \$EMAIL/" | \\
+   sendmail -t
+EOF
+chmod +x $FAI_ROOT/etc/.git/hooks/post-commit
+
+
+
 cat <<EOF | $ROOTCMD sh -
 
 echo "TMPDIR=/lib/init/rw" >> /etc/initramfs-tools/initramfs.conf
