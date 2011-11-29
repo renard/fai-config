@@ -3,6 +3,7 @@ PACKAGES aptitude
   sudo
   cron
   debconf-utils
+  debsums
   file
   hdparm
   less
