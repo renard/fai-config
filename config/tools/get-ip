@@ -3,7 +3,7 @@
 # get-ip.sh --- 
 # Copyright © 2011 Sebastien Gross <seb•ɑƬ•chezwam•ɖɵʈ•org>
 # Created: 2011-12-06
-# Last changed: 2011-12-06 17:11:32
+# Last changed: 2011-12-06 17:15:14
 
 # This program is free software. It comes without any warranty, to
 # the extent permitted by applicable law. You can redistribute it
@@ -60,7 +60,7 @@ function cmd_parse_interface_file() {
 	'
         BEGIN{print "D dev\tIP dot\t\tnetmask dot\tIP num\t\tIP hex\t\tnet num\t\tnet hex"}
         {if($1=="ifconfig") {
-           if($2==di) mark="*"; else mark=" ";
+           if($2==di) mark="*"; else mark=".";
            if($5=="") $5="255.0.0.0";
            ipnum=0
            n=split($3, d, "."); for(i=1;i<=n;i++) ipnum += d[i]*256^(4-i);
@@ -101,7 +101,7 @@ function cmd_parse_from_iproute() {
            bits=32-cidr[2]
            mkhex=sprintf("%.8x\n",  xor((2^32-1), (2^bits-1)));
            mkdot=sprintf("%d.%d.%d.%d", ("0x"substr(mkhex, 1, 2))+0, ("0x"substr(mkhex, 3, 2))+0, ("0x"substr(mkhex, 5, 2))+0, ("0x"substr(mkhex, 7, 2))+0)
-           if($NF==di) mark="*"; else mark=" ";
+           if($NF==di) mark="*"; else mark=".";
            ipnum=0
            n=split(cidr[1], d, "."); for(i=1;i<=n;i++) ipnum += d[i]*256^(4-i);
            printf("%s %s\t%s\t%s\t%d\t%d\t%.8x\t%d\t%s", mark, $NF, cidr[1], mkdot, cidr[2], ipnum, ipnum, ("0x"mkhex)+0, mkhex );
