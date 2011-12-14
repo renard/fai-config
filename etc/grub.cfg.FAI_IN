@@ -32,8 +32,3 @@ menuentry "Boot OS of first partition on first disk" {
     set root=(hd0,1)
     chainloader +1
 }
-
-menuentry "Memtest86+" {
-	set gfxpayload=1024x768
-	linux16 /boot/memtest86+.bin
-}
