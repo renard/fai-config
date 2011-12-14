@@ -1,4 +1,5 @@
 #!/bin/sh
 fcopy -Bir /etc
 fcopy -Bir /root
+fcopy -Bir /srv
 
