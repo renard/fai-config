@@ -55,7 +55,7 @@ conf: $(shell find etc config -type f -name '*.FAI_IN' | sed 's/\.FAI_IN//g') gr
 		-e 's#@@MY_FAI_INSTALLED@@#$(MY_FAI_INSTALLED)#g' \
 		-e 's#@@MY_ETCKEEPER_EMAIL@@#$(MY_ETCKEEPER_EMAIL)#g' \
 	     < $< > $@
-
+	@chmod `stat -c '%a' $<` $@
 
 # kernel/Documentation/filesystems/nfs/nfsroot.txt
 # ip=<client-ip>:<server-ip>:<gw-ip>:<netmask>:<hostname>:<device>:<autoconf>
