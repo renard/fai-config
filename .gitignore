@@ -9,3 +9,5 @@ etc/apt/sources.list
 etc/fai.conf
 etc/grub.cfg
 etc/make-fai-nfsroot.conf
+dhcp.d/fai.conf
+dhcp.d/fai-hosts.conf

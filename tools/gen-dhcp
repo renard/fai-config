@@ -1,0 +1,50 @@
+#!/bin/sh
+
+# generate dhcp configuration from preconfigured interface files in
+# from config/files/etc/network/interfaces
+#
+# The magic in interface file is a line:
+#
+#     # DHCP IP.ADD.RE.SS MA:CA:DD:RE:SS
+#
+
+rm -f dhcp.d/fai.conf dhcp.d/fai-hosts.conf
+
+line=$(./config/tools/get-ip | grep '^\*')
+
+next_server=$(echo "${line}" | awk '{print $3}')
+subnet=$(ip -4 -o route list scope link match ${next_server} | cut -f 1 -d /)
+router=$(ip r s | sed -n 's/^default via \([^[:space:]]\+\) .*/\1/p')
+netmask=$(echo "${line}" | awk '{print $4}')
+domain_name_server=$(sed -n 's/^[[:space:]]*nameserver[[:space:]]//p' /etc/resolv.conf  |sed -e ':a;$!N;s/\n/,/g;ta')
+domain_name=$(hostname -d)
+
+test -z "${domain_name}" && domain_name="install.fai"
+
+cat<<EOF > dhcp.d/fai.conf
+subnet ${subnet} netmask ${netmask} {
+   option routers ${router};
+   option domain-name "${domain_name}";
+   option domain-name-servers ${domain_name_server};
+   # option time-servers ${router};
+   # option ntp-servers ${router};
+   next-server ${next_server};
+   authoritative;
+}
+
+group {
+   filename "fai/pxelinux.0";
+   option domain-name "${domain_name}";
+   include "/srv/fai/dhcp.d/fai-hosts.conf";
+}
+EOF
+
+for f in $(find config/files/etc/network/interfaces -type f); do
+    h=$(basename $f)
+    l=$(sed -n "s,^#[[:space:]]\+DHCP.*[[:space:]]\+\([^[:space:]]\+\)[[:space:]]\+\([^[:space:]]\+\),host $h { hardware ethernet \2; fixed-address \1; },p" $f)
+    if test -n "${l}"; then
+	echo "${l}" >> dhcp.d/fai-hosts.conf
+    fi
+done
+
+/etc/init.d/isc-dhcp-server restart
