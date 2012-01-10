@@ -8,3 +8,4 @@ PACKAGES aptitude
   reprepro
   genisoimage
   memtest86+
+  isc-dhcp-server
