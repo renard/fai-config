@@ -3,8 +3,7 @@
 
 deb http://@@MY_FAI_SERVER@@:9999/debian-cw squeeze-cw main contrib non-free
 deb http://@@MY_FAI_SERVER@@:9999/security squeeze/updates main contrib non-free
-#deb http://@@MY_FAI_SERVER@@:9999/volatile squeeze/volatile main contrib non-free
 deb http://@@MY_FAI_SERVER@@:9999/backports.org squeeze-backports main contrib non-free
-deb http://@@MY_FAI_SERVER@@:9999/debian squeeze-updates main contrib non-free
-deb http://@@MY_FAI_SERVER@@:9999/debian squeeze-proposed-updates main contrib non-free
 deb http://@@MY_FAI_SERVER@@:9999/debian squeeze main contrib non-free
+
+#EOF
