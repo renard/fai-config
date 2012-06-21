@@ -1,0 +1,3 @@
+#!/bin/bash
+
+$ROOTCMD ln -nfs /srv/fai/dhcp.d/dhcpd.conf /etc/dhcp
