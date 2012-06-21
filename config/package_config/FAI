@@ -9,3 +9,4 @@ PACKAGES aptitude
   genisoimage
   memtest86+
   isc-dhcp-server
+  dosfstools
