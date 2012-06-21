@@ -37,7 +37,7 @@ cd:
 	fai-cd -m $(MY_MIRROR_PATH) -f isos/debian-squeeze-cw.iso
 
 
-conf: $(shell find etc config -type f -name '*.FAI_IN' | sed 's/\.FAI_IN//g') grub
+conf: $(shell find etc config dhcp.d -type f -name '*.FAI_IN' | sed 's/\.FAI_IN//g') grub
 	@./update-with-local-files
 %: %.FAI_IN $(MAKEFILES)
 	@echo "Generating $@"

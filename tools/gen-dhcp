@@ -10,11 +10,12 @@
 
 rm -f dhcp.d/fai.conf dhcp.d/fai-hosts.conf
 
-line=$(./config/tools/get-ip | grep '^\*')
+my_ip=$(netstat -uanp | awk '{if($NF~/\/dhcpd/){print $4}}' | cut -d: -f1)
+line=$(./config/tools/get-ip | grep -F $my_ip)
 
 next_server=$(echo "${line}" | awk '{print $3}')
 subnet=$(ip -4 -o route list scope link match ${next_server} | cut -f 1 -d /)
-router=$(ip r s | sed -n 's/^default via \([^[:space:]]\+\) .*/\1/p')
+router=$my_ip
 netmask=$(echo "${line}" | awk '{print $4}')
 domain_name_server=$(sed -n 's/^[[:space:]]*nameserver[[:space:]]//p' /etc/resolv.conf  |sed -e ':a;$!N;s/\n/,/g;ta')
 domain_name=$(hostname -d)
