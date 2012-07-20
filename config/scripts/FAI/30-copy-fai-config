@@ -1,0 +1,5 @@
+#!/bin/bash
+
+tar -C $FAI_ROOT/srv -xzf /live/image/fai-config.tgz
+$ROOTCMD rm -rf /etc/fai
+$ROOTCMD ln -nfs /srv/fai/etc /etc/fai
