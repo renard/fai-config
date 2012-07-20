@@ -28,6 +28,11 @@ init: conf
 	fai-setup -v
 	fai-chboot -IFv default
 
+update-fai-config:
+	tar --exclude 'nfsroot/*' --exclude 'mirror/*' --exclude 'isos/*' \
+                --transform 's/^\./fai/' -czf nfsroot/fai-config.tgz .
+
+
 update-mirror:
 	rm -rf $(MY_MIRROR_PATH)/pool $(MY_MIRROR_PATH)/dists
 	fai-mirror -m 2000 -B -v $(MY_IGNORE_CLASSES) $(MY_MIRROR_PATH)
