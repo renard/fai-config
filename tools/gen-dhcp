@@ -10,7 +10,8 @@
 
 rm -f dhcp.d/fai.conf dhcp.d/fai-hosts.conf
 
-my_ip=$(netstat -uanp | awk '{if($NF~/\/dhcpd/){print $4}}' | cut -d: -f1)
++my_ip=$(sed -n 's/^[[:space:]]*local-address[[:space:]]\+\(.\+\)[[:space:]]*;/\1/p' \
+    < dhcp.d/dhcpd
 line=$(./config/tools/get-ip | grep -F $my_ip)
 
 next_server=$(echo "${line}" | awk '{print $3}')
