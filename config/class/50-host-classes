@@ -21,4 +21,6 @@ for d in $disklist; do
     else
 	echo LVM_XFS
     fi
+done
+
 exit 0
