@@ -1,0 +1,76 @@
+#!/bin/sh
+# Copyright (c) 2009 Sébastien Gross <seb•ɑƬ•chezwam•ɖɵʈ•org>
+# Released under GPL, see http://gnu.org for further information.
+
+# check arguments
+if test $# -ne 2; then
+	echo "Usage: $0 config_file user"
+	exit 1
+fi
+
+# source configuration
+. $1
+shift
+
+# check user existance
+user=$1
+id $user > /dev/null 2>&1
+if test $? -ne 0; then
+	echo "user $user not found"
+	exit 1
+fi
+
+# find user details
+u_id=$(id -u ${user})
+g_id=$(id -g ${user})
+jail=$(sed -n "s/^${user}:[^:]\+:[^:]\+:[^:]\+:[^:]\+:\([^:]\+\):.\+\$/\1/p" \
+	< /etc/passwd)
+shell=$(sed -n "s/^${user}:.*:\([^:]\+\)\$/\1/p" < /etc/passwd)
+
+COMMANDS="${COMMANDS} ${shell}"
+
+# make sure jail directory is not too dangerous
+if test -z "${jail}" -o "${jail}" == "/"; then
+	echo "Error not a valid jail directory: ${jail}"
+	exit 1
+fi
+
+# create home directory if necessary in real FS and inside the jail
+for d in "${jail}" "${jail}/${jail}"; do
+	if ! test -d "${d}"; then
+		mkdir -p "${d}"
+		chown ${u_id}.${g_id} "${d}"
+	fi
+done
+
+# home in real FS has to me owned by root
+chown root.root "${jail}"
+
+echo "Purging old jail in ${jail}"
+rm -fvr ${jail}/{bin,etc,dev,lib,usr}
+
+echo "copying requiered commands and files"
+tar -cf - ${COMMANDS} | tar -C "${jail}" -xvf - | sed 's/^/\t/'
+
+echo "copying required libs"
+echo ${COMMANDS} | xargs ldd | tr -s ' ' | \
+	sed -n 's,.*[[:space:]]\(/.*\)[[:space:]]\+(.*,\1,p' | \
+	sort | uniq | \
+	tar -ch -f - -T - | tar -C "${jail}" -xvf - | sed 's/^/\t/'
+
+echo "copying required devices"
+echo ${COMMANDS} | xargs strings | grep '^/dev/' | sort -u | \
+	tar -ch -f - -T - | tar -C "${jail}" -xvf - | sed 's/^/\t/'
+
+echo "copying NSS info"
+mkdir -p "${jail}/etc"
+tar -cf - /lib/libnss_compat* /lib/libnss_files* | \
+	tar -C "${jail}" -xvf - |sed 's/^/\t/'
+grep "^root:\|^${user}:" /etc/passwd | \
+	awk -F: '{print $1 ":" $2 ":" $3 ":" $4 ":" $1 ":/:/dev/null" }' \
+	> "${jail}/etc/passwd"
+grep "^root:\|^${user}:" /etc/passwd | \
+	awk -F: '{print $1 ":" $2 ":" $4 ":"}' > "${jail}/etc/group"
+
+# Create default shell for user.
+ln -nfs ${shell} "${jail}/bin/sh"
