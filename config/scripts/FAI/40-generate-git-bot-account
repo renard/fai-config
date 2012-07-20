@@ -1,0 +1,3 @@
+#!/bin/sh
+
+/var/lib/fai/config/tools/gen-account git-bot
