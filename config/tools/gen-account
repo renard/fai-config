@@ -1,0 +1,48 @@
+#!/bin/sh
+
+user=$1
+if test -z "$user"; then
+	echo "No user provided"
+	exit 1
+fi
+
+GIT_HOME=/srv/git-home/$user
+CH_GIT_HOME=$GIT_HOME/$GIT_HOME
+
+cat <<EOF >> $FAI_ROOT/etc/ssh/sshd_config
+Match group $user 
+    ChrootDirectory %h
+    X11Forwarding no
+    AllowTcpForwarding no
+EOF
+
+cat <<EOF | $ROOTCMD sh -
+
+    id $user 2>&1
+    if test \$? -gt 0; then
+        addgroup --system $user
+
+        adduser --system --shell /bin/dash --ingroup $user \
+            --disabled-password --gecos "Account bot ($user)" \
+            --home /$GIT_HOME $user
+	mkdir -p $GIT_HOME/.ssh 
+        ssh-keygen -b 2048 -N '' -f $GIT_HOME/.ssh/id_rsa -C "$user@$HOSTNAME"
+        mv $GIT_HOME/.ssh/id_rsa.pub $GIT_HOME/.ssh/authorized_keys
+        #chown $user:$user -R $GIT_HOME/*
+        #chmod 700 $GIT_HOME
+    fi
+
+    if ! test -d $CH_GIT_HOME/git-src; then
+        mkdir -p $CH_GIT_HOME/git-src
+        cd $CH_GIT_HOME/git-src 
+        git init --bare
+        chown -R $user:$user $CH_GIT_HOME/git-src
+    fi
+    if ! test -d $CH_GIT_HOME/git; then
+	mkdir -p $CH_GIT_HOME/git
+        chown -R $user:$user $CH_GIT_HOME/git
+        chmod 700 $CH_GIT_HOME/git
+    fi
+
+EOF
+$ROOTCMD bash /srv/fai/config/tools/shell-jail /srv/fai/config/tools/shell-jail.$user.conf $user
