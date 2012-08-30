@@ -1,0 +1,25 @@
+## BEGIN: CENTREON SUDO
+#Add by CENTREON installation script
+User_Alias      CENTREON=www-data,nagios
+Defaults:CENTREON !requiretty
+# Nagios Restart
+CENTREON   ALL = NOPASSWD: /etc/init.d/nagios3* restart
+CENTREON   ALL = NOPASSWD: /etc/init.d/nagios3 restart
+# Nagios reload
+CENTREON   ALL = NOPASSWD: /etc/init.d/nagios3* reload
+CENTREON   ALL = NOPASSWD: /etc/init.d/nagios3 reload
+# Nagios test config
+CENTREON   ALL = NOPASSWD: /usr/sbin/nagios3* -v *
+CENTREON   ALL = NOPASSWD: /usr/sbin/nagios3 -v *
+# Nagios test for optim config
+CENTREON   ALL = NOPASSWD: /usr/sbin/nagios3* -s *
+CENTREON   ALL = NOPASSWD: /usr/sbin/nagios3 -s *
+# Snmptrapd Restart
+CENTREON   ALL = NOPASSWD: /etc/init.d/snmptrapd restart
+# CentStorage Restart
+CENTREON   ALL = NOPASSWD: /etc/init.d/centstorage restart
+# CentStorage stop
+CENTREON   ALL = NOPASSWD: /etc/init.d/centstorage stop
+# CentStorage start
+CENTREON   ALL = NOPASSWD: /etc/init.d/centstorage start
+## END: CENTREON SUDO 

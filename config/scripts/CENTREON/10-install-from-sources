@@ -1,0 +1,12 @@
+#!/bin/sh
+
+cat <<EOF | $ROOTCMD sh -
+cd /srv/centreon-setup
+tar xfz centreon-2.3.9.tar.gz
+cd centreon-2.3.9
+# fix nagios web interface path
+perl -pi -e "s,'/nagios','/nagios3'," www/install/insertBaseConf.sql
+./install.sh -f ../vars-debian
+
+
+EOF

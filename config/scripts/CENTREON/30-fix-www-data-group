@@ -1,0 +1,3 @@
+#!/bin/sh
+
+$ROOTCMD adduser www-data nagios

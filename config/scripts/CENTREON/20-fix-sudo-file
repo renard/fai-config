@@ -1,0 +1,3 @@
+#!/bin/sh
+
+$ROOTCMD chmod 0440 /etc/sudoers.d/centreon

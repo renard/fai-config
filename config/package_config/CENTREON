@@ -1,0 +1,33 @@
+PACKAGES aptitude
+	rrdtool
+	exim4-daemon-light
+	bsd-mailx
+	php-pear
+	nagios3
+	nagios-plugins
+	ndoutils-nagios3-mysql
+	snmp
+	php5-mysql
+	php5-gd
+	mysql-server
+	# Debian php Pear Modules
+	php-db
+	php-date
+	php-auth-sasl
+	php-net-smtp
+	php-net-socket
+	php-net-ping
+	php-xml-rpc
+	php-soap
+	php-log 
+	# Custom php pear modules
+	php-db-dataobject
+	php-db-dataobject-formbuilder
+	php-mdb2
+	php-html-common
+	php-html-quickform
+	php-html-quickform-advmultiselect
+	php-html-table
+	php-net-traceroute
+	php-validate
+	php-archive-zip
