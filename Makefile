@@ -31,7 +31,7 @@ init: conf
 update-fai-config:
 	tar --exclude 'nfsroot/*' --exclude 'mirror/*' --exclude 'isos/*' \
                 --transform 's/^\./fai/' -czf nfsroot/fai-config.tgz .
-
+	ln -f nfsroot/fai-config.tgz nfsroot/live/filesystem.dir/var/lib/fai/fai-config.tgz
 
 update-mirror:
 	rm -rf $(MY_MIRROR_PATH)/pool $(MY_MIRROR_PATH)/dists
