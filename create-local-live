@@ -1,0 +1,12 @@
+#!/bin/sh
+
+LIVE_BRANCH="__LIVE__"
+
+if test -z "$1"; then
+    local="$1"
+else
+    local=local
+fi
+
+git checkout -b "__LIVE__"
+git merge "$local"
