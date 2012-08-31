@@ -8,5 +8,6 @@ else
     local=local
 fi
 
-git checkout -b "__LIVE__"
+git branch -m "$LIVE_BRANCH" "$LIVE_BRANCH$(date +%Y%m%d-%H%M%S)"
+git checkout -b "$LIVE_BRANCH"
 git merge "$local"
