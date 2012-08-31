@@ -1,3 +1,4 @@
 #!/bin/sh
 
 $ROOTCMD adduser www-data nagios
+$ROOTCMD chmod 770 /var/lib/nagios3/rw
