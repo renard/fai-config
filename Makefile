@@ -18,13 +18,14 @@ Run make(1) with following arguments:\n\
 \n\
  - clean:         Clean all generated files.\n\
  - conf:          Create all configuration files from *.FAI_IN files.\n\
+ - download:	  Download all external resources.\n\
  - init:          Create FAI environment.\n\
  - update-mirror: Update debian mirror for CD generation.\n\
  - cd:            Create bootable CD.\n\
  - help:          This help screen,\n\
 	"
 
-init: conf
+init: conf download
 	fai-setup -v
 	fai-chboot -IFv default
 
@@ -61,6 +62,15 @@ conf: $(shell find etc config dhcp.d -type f -name '*.FAI_IN' | sed 's/\.FAI_IN/
 		-e 's#@@MY_ETCKEEPER_EMAIL@@#$(MY_ETCKEEPER_EMAIL)#g' \
 	     < $< > $@
 	@chmod `stat -c '%a' $<` $@
+
+download: $(shell git ls-files '*.URL/*')
+        @echo "getting $< $@"; \
+        @dn=$(shell dirname "$<"); \
+		class=$(shell basename "$<"); \
+	        outdir=`echo "$$dn" | sed 's/\.URL//'`; \
+		mkdir -p "$$outdir"; \
+	        url=$(shell cat $<) ;\
+		wget $$url -O $$outdir/$$class
 
 # kernel/Documentation/filesystems/nfs/nfsroot.txt
 # ip=<client-ip>:<server-ip>:<gw-ip>:<netmask>:<hostname>:<device>:<autoconf>
