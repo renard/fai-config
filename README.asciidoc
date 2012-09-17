@@ -1,0 +1,113 @@
+= Generic FAI configuration
+:lang: en
+:date:
+
+== Setup
+
+First you should clone the default configuration files from github:
+
+----
+cd /srv
+https://github.com/renard/fai-config.git fai
+----
+
+For your very first installation you must install some required tools. Make
+sure your Debian distibution is +Squeeze+.
+
+Add following line to your +/etc/apt/sources.list+:
+
+----
+deb http://debian.chezwam.org/debian squeeze-cw main contrib non-free
+----
+
+Then install required tools:
+
+----
+apt-get update
+fai -v -s file:///srv/fai/config -c FAI softupdate /
+----
+
+Then you need to declare on which interface you want to run FAI from your
+network. Edit +/etc/default/isc-dhcp-server+. Update file with following if
+you are running FAI from +eth1+:
+
+----
+INTERFACES="eth1"
+----
+
+== Local configuration
+
+You can define your own local configuration into directely into git. You
+need to create an empty branch called +local+:
+
+----
+git symbolic-ref HEAD refs/heads/local
+rm .git/index 
+git clean -fdx 
+----
+
+Then you can add some files. The first you might need is
++Makefile.conf.local+:
+
+----
+# -*- makefile-gmake -*-
+
+MY_INSTALL_IFACE  = eth1
+MY_FAI_SERVER     = $(shell ip a l $(MY_INSTALL_IFACE) | sed -n 's,.*inet \([^/]\+\).*,\1,p' | head -n 1)
+----
+
+This will fit your setup from +eth1+.
+
+Then commit your changes:
+
+----
+git add Makefile.conf.local
+git commit -asm "First commit for local branch."
+----
+
+Then you can create initial FAI configuration:
+
+----
+make conf
+make init
+make update-fai-config
+----
+
+You need to update exports files (this is a one time operation) in
++/etc/exports+:
+
+----
+/srv/fai/config  192.168.22.0/24(async,ro,no_subtree_check,fsid=0,insecure,insecure_locks)
+/srv/fai/nfsroot 192.168.22.0/24(async,ro,no_subtree_check,no_root_squash)
+----
+
+And run:
+
+----
+/etc/init.d/portmap restart
+/etc/init.d/nfs-kernel-server restart
+----
+
+Now you would be able to setup some new hosts.
+
+== Adding your own configuration
+
+Add all your configuration files into the +local+ branch:
+
+----
+git checkout local
+vi path/to/file
+git add path/t/file
+[...]
+git commit
+[...]
+----
+
+To update your configuration with your newy created files you need to:
+
+----
+git checkout master
+make conf
+----
+
+This will create a +__LIVE__+ branch by rebasing +local+ on top of +master+.
