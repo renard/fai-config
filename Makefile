@@ -44,7 +44,8 @@ cd:
 
 
 conf: $(shell find etc config dhcp.d -type f -name '*.FAI_IN' | sed 's/\.FAI_IN//g') grub
-	@./update-with-local-files
+	@./create-local-live
+
 %: %.FAI_IN $(MAKEFILES)
 	@echo "Generating $@"
 	@sed \
