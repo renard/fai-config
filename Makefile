@@ -45,6 +45,7 @@ cd:
 
 conf: $(shell find etc config dhcp.d -type f -name '*.FAI_IN' | sed 's/\.FAI_IN//g') grub
 	@./create-local-live
+	@./tools/gen-dhcp
 
 %: %.FAI_IN $(MAKEFILES)
 	@echo "Generating $@"
