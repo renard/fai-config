@@ -18,6 +18,7 @@ Run make(1) with following arguments:\n\
 \n\
  - clean:         Clean all generated files.\n\
  - conf:          Create all configuration files from *.FAI_IN files.\n\
+ - update-fai-config: update fai configuration in nfsroot.\n\
  - download:	  Download all external resources.\n\
  - init:          Create FAI environment.\n\
  - update-mirror: Update debian mirror for CD generation.\n\
