@@ -5,7 +5,10 @@ LIVE_BRANCH="__LIVE__"
 if test -n "$1"; then
     local="$1"
 else
-    local=local
+    local=$(git config --get fai.local)
+    if test -z "$local"; then
+        local=local
+    fi
 fi
 
 git branch -m "$LIVE_BRANCH" "$LIVE_BRANCH$(date +%Y%m%d-%H%M%S)"
