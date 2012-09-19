@@ -1,0 +1,5 @@
+common {
+       syncer {
+       	      rate 100MB;
+       }
+}

@@ -1,0 +1,21 @@
+#!/bin/sh
+
+/etc/init.d/drbd stop
+
+tar cfz /tmp/srv.tgz /srv
+
+umount /srv
+
+dd if=/dev/zero of=/dev/mapper/vg00-srv count=512
+/sbin/drbdadm create-md r0
+/etc/init.d/drbd start
+/sbin/drbdadm -- --overwrite-data-of-peer primary r0
+/sbin/mkfs.xfs -f /dev/drbd0
+mount /dev/drbd0 /srv
+tar -C / -xzf /tmp/srv.tgz 
+umount /srv
+
+sed -i '/\/dev\/vg00\/srv/d' /etc/fstab
+echo "/dev/drbd0 /srv xfs rw 0 0" >> /etc/fstab
+
+mount -a

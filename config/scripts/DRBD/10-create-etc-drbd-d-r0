@@ -1,0 +1,20 @@
+#!/bin/sh
+
+cat <<EOF > $FAI_ROOT/etc/drbd.d/r0.res
+resource r0 {
+  on $HOSTNAME {
+    device     /dev/drbd0;
+    disk       /dev/mapper/vg00-srv;
+    address    $IPADDR:7788;
+    flexible-meta-disk  internal;
+  }
+
+# Update remote node with its actual configuration
+#  on REMOTE {
+#    device     /dev/drbd0;
+#    disk       /dev/mapper/vg00-srv;
+#    address    REMOTE-IP:7788;
+#    flexible-meta-disk  internal;
+#  }
+}
+EOF
