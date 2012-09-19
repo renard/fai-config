@@ -46,6 +46,13 @@ rm .git/index
 git clean -fdx 
 ----
 
+You can save that parameter into git configuration:
+
+----
+git config --set fai.local local
+----
+
+
 Then you can add some files. The first you might need is
 +Makefile.conf.local+:
 
