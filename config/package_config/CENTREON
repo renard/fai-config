@@ -5,6 +5,7 @@ PACKAGES aptitude
 	php-pear
 	nagios3
 	nagios-plugins
+	libnagios-plugin-perl
 	ndoutils-nagios3-mysql
 	snmp
 	php5-mysql
