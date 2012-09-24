@@ -1,0 +1,14 @@
+root@admin1-pa3:/etc/puppet# cat /etc/default/puppetmaster 
+# Defaults for puppetmaster - sourced by /etc/init.d/puppetmaster
+
+# Start puppetmaster on boot? If you are using passenger, you should
+# have this set to "no"
+START=yes
+
+# Startup options
+DAEMON_OPTS=""
+
+SERVERTYPE=mongrel
+PUPPETMASTERS=4
+PORT=18140
+DAEMON_OPTS="--ssl_client_header=HTTP_X_CLIENT_DN"
