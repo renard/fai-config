@@ -1,0 +1,8 @@
+PACKAGES aptitude
+	 libdbi-perl
+	 libnet-ip-perl
+	 libsnmp-info-perl
+	 libgd-gd2-perl
+	 libgd-graph-perl
+	 libnet-dns-perl
+	 libdbd-mysql-perl
