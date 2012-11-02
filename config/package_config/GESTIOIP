@@ -6,3 +6,5 @@ PACKAGES aptitude
 	 libgd-graph-perl
 	 libnet-dns-perl
 	 libdbd-mysql-perl
+	 libnet-ping-external-perl
+	 libparallel-forkmanager-perl
