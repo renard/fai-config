@@ -46,3 +46,26 @@ archives-volatile	http://debian.advalem.net/debian-archives/debian-volatile
 
 # deb http://10.0.0.1:9999/debian-cw squeeze-cw main contrib non-free
 debian-cw		http://debian.chezwam.org/debian
+
+
+# For ubuntu use something like:
+# deb http://10.0.0.1:9999/ubuntu-extra quantal main
+# # partner packages
+# deb http://10.0.0.1:9999/ubuntu-partner quantal-proposed partner
+# deb http://10.0.0.1:9999/ubuntu-partner quantal-security partner
+# deb http://10.0.0.1:9999/ubuntu-partner quantal-backports partner
+# deb http://10.0.0.1:9999/ubuntu-partner quantal-updates partner
+# deb http://10.0.0.1:9999/ubuntu-partner quantal partner
+# # official packages
+# deb http://10.0.0.1:9999/ubuntu quantal-proposed main restricted universe multiverse
+# deb http://10.0.0.1:9999/ubuntu quantal-security main restricted universe multiverse
+# deb http://10.0.0.1:9999/ubuntu quantal-backports main restricted universe multiverse
+# deb http://10.0.0.1:9999/ubuntu quantal-updates main restricted universe multiverse
+# deb http://10.0.0.1:9999/ubuntu quantal main restricted universe multiverse
+ubuntu			http://fr.archive.ubuntu.com/ubuntu
+ubuntu-extra		http://extras.ubuntu.com/ubuntu
+ubuntu-partner		http://archive.canonical.com/ubuntu
+
+# Add:
+# deb http://10.0.0.1:9999/puppetlabs quantal dependencies main devel
+puppetlabs		http://apt.puppetlabs.com
