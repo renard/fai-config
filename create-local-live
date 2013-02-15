@@ -11,7 +11,7 @@ else
     fi
 fi
 
-lb=$(git branch --list "${local}")
+lb=$(git branch | grep  "^[[:space:]]*${local}\$")
 
 git branch -m "$LIVE_BRANCH" "$LIVE_BRANCH$(date +%Y%m%d-%H%M%S)"
 git checkout -b "$LIVE_BRANCH"
