@@ -11,16 +11,16 @@ PACKAGES aptitude
   iproute udev liblinux-lvm-perl
   cryptsetup busybox
   etckeeper/squeeze-cw
-  firmware-linux-free/squeeze-backports
-  firmware-linux-nonfree/squeeze-backports
-  firmware-bnx2/squeeze-backports
-  firmware-iwlwifi/squeeze-backports
-  linux-base/squeeze-backports
-  initramfs-tools/squeeze-backports
+  firmware-linux-free
+  firmware-linux-nonfree
+  firmware-bnx2
+  firmware-iwlwifi
+  linux-base
+  initramfs-tools
   iotop
   perl-base/squeeze-updates
 
 PACKAGES aptitude AMD64
   grub-pc lilo
-  linux-image-2.6-amd64/squeeze-backports
+  linux-image-2.6-amd64
 

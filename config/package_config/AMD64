@@ -1,7 +1,7 @@
 PACKAGES aptitude AMD64
  grub-pc grub- grub-legacy- lilo-
- linux-base/squeeze-backports
- initramfs-tools/squeeze-backports
- linux-image-2.6-amd64/squeeze-backports
- firmware-linux-nonfree/squeeze-backports
+ linux-base
+ initramfs-tools
+ linux-image-2.6-amd64
+ firmware-linux-nonfree
  
