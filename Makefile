@@ -41,6 +41,8 @@ update-mirror:
 	fai-mirror -m 2000 -B -v $(MY_IGNORE_CLASSES) $(MY_MIRROR_PATH)
 
 cd:
+	rm etc/grub.cfg
+	make grub
 	mkdir -p isos
 	fai-cd -m $(MY_MIRROR_PATH) -f isos/debian-squeeze-cw.iso
 
