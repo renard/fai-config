@@ -36,6 +36,7 @@ update-fai-config:
 	ln -f nfsroot/fai-config.tgz nfsroot/live/filesystem.dir/var/lib/fai/fai-config.tgz
 
 update-mirror:
+	mkdir -p $(MY_MIRROR_PATH)
 	rm -rf $(MY_MIRROR_PATH)/pool $(MY_MIRROR_PATH)/dists
 	fai-mirror -m 2000 -B -v $(MY_IGNORE_CLASSES) $(MY_MIRROR_PATH)
 
