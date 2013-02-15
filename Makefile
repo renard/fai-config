@@ -109,5 +109,5 @@ menuentry \"Install server - $$h\" {\n\
 
 
 clean:
-	@find etc config -type f -name '*.FAI_IN' -print0 | sed 's/\.FAI_IN//g' | xargs -0 rm -f
-	@(cd local.d/ && git ls-files) | xargs rm -f
+	@find dhcp.d etc config -type f -name '*.FAI_IN' -print0 | sed 's/\.FAI_IN//g' | xargs -0 rm -f
+	@rm -f dhcp.d/fai.conf
