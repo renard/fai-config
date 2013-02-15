@@ -11,6 +11,13 @@ else
     fi
 fi
 
+lb=$(git branch --list "${local}")
+
 git branch -m "$LIVE_BRANCH" "$LIVE_BRANCH$(date +%Y%m%d-%H%M%S)"
 git checkout -b "$LIVE_BRANCH"
-git merge "$local"
+
+if test -z "${lb}"; then
+    echo "Branch ${local} not found. Not merging. Hope that is OK."
+else
+    git merge "$local"
+fi
