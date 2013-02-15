@@ -50,6 +50,15 @@ group {
 }
 EOF
 
+cat<<EOF > dhcp.d/fai-hosts.conf
+# This files contains FAI known hosts which are specificatly defined in
+# config/files/etc/network/interfaces/<HOSTNAME>
+#
+# Each file first line must respect that scheme:
+#  # DHCP IP.AD.DR.ESS MA:CA:DD:RE:SS
+#
+EOF
+
 for f in $(find config/files/etc/network/interfaces -type f); do
     h=$(basename $f)
     l=$(sed -n "s,^#[[:space:]]\+DHCP.*[[:space:]]\+\([^[:space:]]\+\)[[:space:]]\+\([^[:space:]]\+\),host $h { hardware ethernet \2; fixed-address \1; },p" $f)
