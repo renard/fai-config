@@ -16,9 +16,17 @@ my_ip=$(sed -n 's/^[[:space:]]*local-address[[:space:]]\+\(.\+\)[[:space:]]*;/\1
 line=$(./config/tools/get-ip | grep -F $my_ip)
 
 next_server=$(echo "${line}" | awk '{print $3}')
+if test -z "${next_server}"; then
+    next_server=$my_ip
+fi
+
 subnet=$(ip -4 -o route list scope link match ${next_server} | cut -f 1 -d /)
 router=$(ip -4 -o route list | grep default | cut -d' ' -f 3)
 netmask=$(echo "${line}" | awk '{print $4}')
+if test -z "${netmask}"; then
+    netmask=$(ifconfig | grep -F "addr:${my_ip} " | awk -F: '{print $NF}')
+fi
+
 domain_name_server=$(sed -n 's/^[[:space:]]*nameserver[[:space:]]//p' /etc/resolv.conf  |sed -e ':a;$!N;s/\n/,/g;ta')
 domain_name=$(hostname -d)
 
