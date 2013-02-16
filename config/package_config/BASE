@@ -33,3 +33,4 @@ PACKAGES aptitude
   gawk mawk-
   unzip
   snoopylogger
+  isc-dhcp-client
