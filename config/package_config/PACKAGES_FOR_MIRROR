@@ -1,0 +1,6 @@
+# Add here som package that are not include in the mirror by the fai-mirror
+# command
+
+PACKAGES aptitude
+  isc-dhcp-client
+  
