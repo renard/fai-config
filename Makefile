@@ -36,9 +36,16 @@ update-fai-config:
 	ln -f nfsroot/fai-config.tgz nfsroot/live/filesystem.dir/var/lib/fai/fai-config.tgz
 
 update-mirror:
+	mv $(MY_NFSROOT)/live/filesystem.dir/var/tmp/base-pkgs.lis \
+		$(MY_NFSROOT)/live/filesystem.dir/var/tmp/base-pkgs.lis-tmp
+	touch $(MY_NFSROOT)/live/filesystem.dir/var/tmp/base-pkgs.lis
+
 	mkdir -p $(MY_MIRROR_PATH)
 	rm -rf $(MY_MIRROR_PATH)/pool $(MY_MIRROR_PATH)/dists
 	fai-mirror -m 2000 -B -v $(MY_IGNORE_CLASSES) $(MY_MIRROR_PATH)
+
+	mv $(MY_NFSROOT)/live/filesystem.dir/var/tmp/base-pkgs.lis-tmp \
+		$(MY_NFSROOT)/live/filesystem.dir/var/tmp/base-pkgs.lis
 
 cd:
 	rm etc/grub.cfg
