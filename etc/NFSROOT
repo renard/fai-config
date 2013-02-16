@@ -18,7 +18,7 @@ PACKAGES aptitude
   linux-base
   initramfs-tools
   iotop
-  perl-base/squeeze-updates
+  perl-base
 
 PACKAGES aptitude AMD64
   grub-pc lilo
