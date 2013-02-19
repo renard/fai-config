@@ -115,19 +115,6 @@ menuentry \"Install server - $$h\" {\n\
 	" >> $< ; \
 	done
 
-
-
-
-
-# 	echo "menuentry \"Install server - $$h\" {" ; \
-# 	echo "\tset gfxpayload=1024x768" ; \
-# 	echo "\tlinux   /boot/vmlinuz boot=live FAI_FLAGS=\"verbose,createvt\" FAI_ACTION=install hostname=$$h $$ip" ; \
-# 	echo "\tinitrd  /boot/initrd.img" ; \
-# 	echo "}" ; \
-# done;
-
-
-
 clean: clean-download
 	@find dhcp.d etc config -type f -name '*.FAI_IN' -print0 | sed 's/\.FAI_IN//g' | xargs -0 rm -f
 	@rm -f dhcp.d/fai.conf
