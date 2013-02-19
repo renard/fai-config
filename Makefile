@@ -83,7 +83,9 @@ download:
 		outdir=`echo "$$dn" | sed 's/\.URL//'`; \
 		mkdir -p "$$outdir"; \
 		url=`cat "$$f"`; \
-		wget "$$url" -O "$$outdir/$$class" ; \
+		if ! test -f "$$outdir/$$class"; then \
+			wget "$$url" -O "$$outdir/$$class" ; \
+		fi; \
 	done
 
 # kernel/Documentation/filesystems/nfs/nfsroot.txt
