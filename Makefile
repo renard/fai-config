@@ -76,14 +76,15 @@ conf: $(shell find etc config dhcp.d -type f -name '*.FAI_IN' | sed 's/\.FAI_IN/
 	     < $< > $@
 	@chmod `stat -c '%a' $<` $@
 
-download: $(shell git ls-files '*.URL/*')
-        @echo "getting $< $@"; \
-        @dn=$(shell dirname "$<"); \
-		class=$(shell basename "$<"); \
-	        outdir=`echo "$$dn" | sed 's/\.URL//'`; \
+download:
+	for f in $(shell git ls-files '*.URL/*'); do \
+		dn=`dirname "$$f"`; \
+		class=`basename "$$f"`; \
+		outdir=`echo "$$dn" | sed 's/\.URL//'`; \
 		mkdir -p "$$outdir"; \
-	        url=$(shell cat $<) ;\
-		wget $$url -O $$outdir/$$class
+		url=`cat "$$f"`; \
+		wget "$$url" -O "$$outdir/$$class" ; \
+	done
 
 # kernel/Documentation/filesystems/nfs/nfsroot.txt
 # ip=<client-ip>:<server-ip>:<gw-ip>:<netmask>:<hostname>:<device>:<autoconf>
