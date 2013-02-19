@@ -88,6 +88,16 @@ download:
 		fi; \
 	done
 
+clean-download:
+	for f in $(shell git ls-files '*.URL/*'); do \
+		dn=`dirname "$$f"`; \
+		class=`basename "$$f"`; \
+		outdir=`echo "$$dn" | sed 's/\.URL//'`; \
+		rm -f "$$outdir/$$class"; \
+		rmdir "$$outdir" || true; \
+	done
+
+
 # kernel/Documentation/filesystems/nfs/nfsroot.txt
 # ip=<client-ip>:<server-ip>:<gw-ip>:<netmask>:<hostname>:<device>:<autoconf>
 # ip=10.29.0.220::10.29.0.1:255.255.255.0::eth0:none
@@ -118,6 +128,6 @@ menuentry \"Install server - $$h\" {\n\
 
 
 
-clean:
+clean: clean-download
 	@find dhcp.d etc config -type f -name '*.FAI_IN' -print0 | sed 's/\.FAI_IN//g' | xargs -0 rm -f
 	@rm -f dhcp.d/fai.conf
