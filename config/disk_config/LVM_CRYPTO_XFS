@@ -1,5 +1,5 @@
-disk_config disk1 bootable:1 disklabel:gpt-bios
-#disk_config disk1 disklabel:msdos fstabkey:uuid
+#disk_config disk1 bootable:1 disklabel:gpt-bios
+disk_config disk1 disklabel:msdos fstabkey:uuid
 
 
 primary		/boot	256		ext3	rw,errors=remount-ro createopts="-L /boot -m 5"
@@ -10,12 +10,11 @@ luks:"test"     -		disk1.2		-	-
 
 disk_config lvm
 vg		vg00		disk1.2
-vg00-swap	swap		2g-4g		swap	sw
-vg00-root	/		4g		xfs	rw createopts="-f -L /"
-#vg00-boot	/boot		256		xfs	rw createopts="-f -L /boot"
-vg00-tmp	/tmp		1g-2g		xfs	rw,noatime,nosuid,nodev,noexec createopts="-f -L /tmp"
-vg00-usr	/usr		4g		xfs	rw createopts="-f -L /usr"
-vg00-var	/var		4g		xfs	rw createopts="-f -L /var"
-vg00-var_tmp	/var/tmp	1g-2g		xfs	rw,noatime,nosuid,nodev,noexec createopts="-f -L /var/tmp"
-vg00-srv 	/srv		0-100%		xfs	rw createopts="-f -L /srv"
+vg00-swap	swap		2GiB-4GiB		swap	sw
+vg00-root	/		4GiB		xfs	rw createopts="-f -L /"
+vg00-tmp	/tmp		1GiB-2GiB		xfs	rw,noatime,nosuid,nodev,noexec createopts="-f -L /tmp"
+vg00-usr	/usr		4GiB		xfs	rw createopts="-f -L /usr"
+vg00-var	/var		4GiB		xfs	rw createopts="-f -L /var"
+vg00-var_tmp	/var/tmp	1GiB-2GiB		xfs	rw,noatime,nosuid,nodev,noexec createopts="-f -L /var/tmp"
+vg00-srv 	/srv		0-70%		xfs	rw createopts="-f -L /srv"
 
