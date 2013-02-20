@@ -1,0 +1,25 @@
+#!/bin/sh
+
+AUTHORIZED_KEYS="root/.ssh/authorized_keys"
+
+if ! test -e $FAI_ROOT/$AUTHORIZED_KEYS; then
+    cat <<EOF
+/!\
+/!\ WARNING: NO SSH KEYS FOUND IN /$AUTHORIZED_KEYS /!\
+/!\
+
+We hope that is all right!
+
+You should add your ssh key into the FAI configuration file in
+
+config/files/etc/initramfs-tools/root/.ssh/authorized_keys/CRYPTO
+
+or similar.
+
+EOF
+
+    exit 1
+fi
+
+exit 0
+    
