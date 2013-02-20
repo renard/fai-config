@@ -54,4 +54,29 @@ Then regenerate grub configuration files:
 
   update-grub
 
+How to unlock the root filesystem
+---------------------------------
+
+Once the pre-boot initramfs is loaded a dropbear ssh server is started and
+listen on address defined in the GRUB_CMDLINE_LINUX.
+
+If you have a console access to the server you may not need to connect via
+ssh. Otherwise you can do:
+
+  ssh root@192.168.152.150
+
+You will be dropped into a busybox shell from where you would be able to
+unlock the root filesystem using:
+
+  echo -n 'MyS3cr3tK3y' > /lib/cryptsetup/passfifo
+
+A one-liner command would be:
+
+  ssh -o "UserKnownHostsFile=~/.ssh/known_hosts.initramfs" \
+      root@192.168.152.150 \
+      "echo -ne 'MyS3cr3tK3y' >/lib/cryptsetup/passfifo"
+
+
+Do not forget the -n option to echo.
+
 EOF
