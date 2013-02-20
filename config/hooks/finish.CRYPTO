@@ -4,7 +4,10 @@
 cat <<EOF >> $FAI_ROOT/root/README
 
 CRYPTSETUP
-----------
+==========
+
+Changing LUKS password
+----------------------
 
 You can change the LUKS password using following command:
 
@@ -13,5 +16,42 @@ You can change the LUKS password using following command:
 And remove install key:
 
   cryptsetup luksKillSlot  /dev/sda2 0
+
+Updating root authorized_keys
+-----------------------------
+
+By default the live root ssh auhtorized keys are used. If you need to change
+them, you need to edit the /etc/initramfs-tools/root/.ssh/authorized_keys
+file and regenerate the initrd image using:
+
+  update-initramfs -k all -u
+
+or if no initramfs exists:
+
+  update-initramfs -k `uname -r` -c
+
+Changing pre-boot IP
+--------------------
+
+By default the pre-boot IP address is the same that was used for the
+installation process.
+
+If you need to update if, you need to change the GRUB_CMDLINE_LINUX variable
+in /etc/default/grub file with something similar to:
+
+  GRUB_CMDLINE_LINUX="reboot=pci ip=192.168.152.150::192.168.152.2:255.255.255.0::eth0:none"
+
+The ip parameter is defined in the kerne documentation in
+kernel/Documentation/filesystems/nfs/nfsroot.txt or
+http://www.kernel.org/doc/Documentation/filesystems/nfs/nfsroot.txt its
+scheme is:
+
+ip=<client-ip>:<server-ip>:<gw-ip>:<netmask>:<hostname>:<device>:<autoconf>
+
+Basicaly you need to change client-ip, gw-ip, netmask and device.
+
+Then regenerate grub configuration files:
+
+  update-grub
 
 EOF
