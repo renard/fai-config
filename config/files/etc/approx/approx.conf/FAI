@@ -23,15 +23,13 @@
 
 
 # For debian use something like:
-# deb http://10.0.0.1:9999/security squeeze/updates main contrib non-free
-# deb http://10.0.0.1:9999/backports.org squeeze-backports main contrib non-free
+# deb http://10.0.0.1:9999/debian-backports squeeze-backports main contrib non-free
 # deb http://10.0.0.1:9999/debian squeeze-updates main contrib non-free
 # deb http://10.0.0.1:9999/debian squeeze-proposed-updates main contrib non-free
 # deb http://10.0.0.1:9999/debian squeeze main contrib non-free
 
 debian			http://http.debian.net/debian
 debian-backports	http://http.debian.net/debian-backports
-backports.org		http://http.debian.net/backports.org
 
 archives		http://http.debian.net/debian-archives/debian
 archives-backports.org	http://http.debian.net/debian-archives/backports.org
