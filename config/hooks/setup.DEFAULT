@@ -2,3 +2,23 @@
 
 # remove anoying sounds
 rmmod pcspkr
+
+
+. /etc/fai/fai.conf
+echo $FAI_CONFIG_SRC | grep -q ^nfs://
+if [ $? -eq 0 ]; then
+    # if FAI config directory is a NFS mount make sure its owner is root
+    # otherwhise some file permission would be broken during install
+    # process.
+    id=$(stat --printf %u:%g $FAI)
+    if ! test "$id" = "0:0"; then
+	# Maybe the nfs server is not properly setup for NFSv4, then try in
+	# NFSv3.
+        src=$(echo $FAI_CONFIG_SRC |sed -e 's#^nfs://##' -e 's#/#:/#')
+        mount | grep -q "^$src"
+        if [ $? -eq 0 ]; then
+            umount -lf $FAI
+            mount -o ro,nolock,vers=3 $src $FAI
+        fi
+    fi
+fi
