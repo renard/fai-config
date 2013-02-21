@@ -1,11 +1,14 @@
 #!/bin/bash
 
-$ROOTCMD mkdir -p /srv/mysql
-$ROOTCMD mv /var/lib/mysql /srv/mysql/lib
-$ROOTCMD ln -nfs /srv/mysql/lib /var/lib/mysql
-$ROOTCMD mkdir /srv/mysql/log
-$ROOTCMD chown mysql.mysql /srv/mysql/log
-$ROOTCMD mv /var/log/mysql  /srv/mysql/log
-$ROOTCMD mv /var/log/mysql.err  /srv/mysql/log
-$ROOTCMD ln -nfs /srv/mysql/log/mysql /var/log
-$ROOTCMD ln -nfs /srv/mysql/log/mysql.err /var/log
+cat <<EOF | $ROOTCMD sh -
+mkdir -p /srv/mysql
+mv /var/lib/mysql /srv/mysql/lib
+ln -nfs /srv/mysql/lib /var/lib/mysql
+mkdir /srv/mysql/log
+chown mysql.mysql /srv/mysql/log
+mv /var/log/mysql  /srv/mysql/log
+mv /var/log/mysql.err  /srv/mysql/log
+ln -nfs /srv/mysql/log/mysql /var/log
+ln -nfs /srv/mysql/log/mysql.err /var/log
+rm -f /var/lib/mysql/ib*
+EOF
