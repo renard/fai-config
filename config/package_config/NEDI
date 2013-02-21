@@ -1,0 +1,11 @@
+PACKAGES aptitude
+  librrds-perl
+  libalgorithm-diff-perl
+  libnet-snmp-perl
+  libdbi-perl
+  libnet-telnet-perl
+  libdbd-mysql-perl
+  php5-mysql
+  php5-snmp
+  php5-gd
+  
