@@ -1,0 +1,10 @@
+#!/bin/sh
+
+cat <<EOF | $ROOTCMD sh -
+cd /srv/nedi-setup
+mkdir nedi-1.0.7
+ln -nfs nedi-1.0.7 nedi
+cd nedi
+tar xfz ../nedi-1.0.7.tgz
+ln -nfs /srv/nedi-setup/nedi/html/ /srv/www/nedi
+EOF
