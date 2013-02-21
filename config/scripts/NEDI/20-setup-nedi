@@ -1,0 +1,6 @@
+#!/bin/sh
+
+cat <<EOF | $ROOTCMD sh -
+cd /srv/nedi-setup/nedi
+perl nedi.pl -i root ''
+EOF
