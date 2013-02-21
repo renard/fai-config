@@ -1,6 +1,13 @@
 #!/bin/sh
 
+# Graphic cards
+lspci | grep -q nVidia && echo DRIVER_NVIDIA
 
-lspci | grep -q nVidia && echo NVIDIA
+# Wireless
+lspci | grep -q "Intel Corporation Centrino" && echo DRIVER_WIFI
+
+# Network cards
+lspci | grep -q "Broadcom Corporation NetXtreme" && echo DRIVER_BNX2
+
 
 exit 0
