@@ -1,3 +1,4 @@
 PACKAGES aptitude
+  apache2-mpm-prefork
   libapache2-mod-rpaf
   nginx/squeeze-backports
