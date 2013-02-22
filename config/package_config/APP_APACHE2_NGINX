@@ -1,7 +1,3 @@
 PACKAGES aptitude
-  libapache2-mod-php5 
   libapache2-mod-rpaf
-  memcached
-  php5-memcache
-  php5-xcache
   nginx/squeeze-backports
