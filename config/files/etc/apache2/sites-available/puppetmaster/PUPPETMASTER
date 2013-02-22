@@ -1,0 +1,45 @@
+# -*- apache -*-
+# you probably want to tune these settings
+PassengerHighPerformance on
+PassengerMaxPoolSize 12
+PassengerPoolIdleTime 1500
+# PassengerMaxRequests 1000
+PassengerStatThrottleRate 120
+RackAutoDetect Off
+RailsAutoDetect Off
+
+Listen 127.0.0.1:8141
+
+<VirtualHost 127.0.0.1:8141>
+        SSLEngine on
+        SSLProtocol -ALL +SSLv3 +TLSv1
+        SSLCipherSuite ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM:-LOW:-SSLv2:-EXP
+
+        SSLCertificateFile      /var/lib/puppet/ssl/certs/cw-puppet.localdomain.pem
+        SSLCertificateKeyFile   /var/lib/puppet/ssl/private_keys/cw-puppet.localdomain.pem
+        SSLCertificateChainFile /var/lib/puppet/ssl/certs/ca.pem
+        SSLCACertificateFile    /var/lib/puppet/ssl/certs/ca.pem
+        # If Apache complains about invalid signatures on the CRL, you can try disabling
+        # CRL checking by commenting the next line, but this is not recommended.
+        SSLCARevocationFile     /var/lib/puppet/ssl/ca/ca_crl.pem
+        SSLVerifyClient optional
+        SSLVerifyDepth  1
+        # The `ExportCertData` option is needed for agent certificate expiration warnings
+        SSLOptions +StdEnvVars +ExportCertData
+
+        # This header needs to be set if using a loadbalancer or proxy
+        RequestHeader unset X-Forwarded-For
+
+        RequestHeader set X-SSL-Subject %{SSL_CLIENT_S_DN}e
+        RequestHeader set X-Client-DN %{SSL_CLIENT_S_DN}e
+        RequestHeader set X-Client-Verify %{SSL_CLIENT_VERIFY}e
+
+        DocumentRoot /usr/share/puppet/rack/puppetmasterd/public/
+        RackBaseURI /
+        <Directory /usr/share/puppet/rack/puppetmasterd/>
+                Options None
+                AllowOverride None
+                Order allow,deny
+                allow from all
+        </Directory>
+</VirtualHost>
