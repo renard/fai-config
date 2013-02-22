@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cat <<EOF | $ROOTCMD sh - 
+mv /var/lib/puppet /srv
+ln -nfs /srv/puppet /var/lib/puppet
+EOF
