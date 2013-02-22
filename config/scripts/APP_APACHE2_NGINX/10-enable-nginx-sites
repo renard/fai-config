@@ -1,0 +1,7 @@
+#!/bin/sh
+
+cat <<EOF | $ROOTCMD sh -
+ln -nfs ../sites-available/status /etc/nginx/sites-enabled/status
+ln -nfs ../sites-available/proxy-apache2 /etc/nginx/sites-enabled/proxy-apache2
+rm -f /etc/nginx/sites-enabled/default
+EOF

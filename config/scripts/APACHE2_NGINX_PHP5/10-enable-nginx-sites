@@ -1,5 +1,0 @@
-#!/bin/sh
-
-$ROOTCMD ln -nfs ../sites-available/status /etc/nginx/sites-enabled/status
-$ROOTCMD ln -nfs ../sites-available/proxy-apache2 /etc/nginx/sites-enabled/proxy-apache2
-$ROOTCMD rm -f /etc/nginx/sites-enabled/default

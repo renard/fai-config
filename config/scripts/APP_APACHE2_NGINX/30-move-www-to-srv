@@ -1,0 +1,6 @@
+#!/bin/sh
+
+cat<<EOF | $ROOTCMD sh -
+mv /var/www /srv
+ln -nfs /srv/www /var
+EOF

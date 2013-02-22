@@ -1,4 +1,0 @@
-#!/bin/sh
-
-$ROOTCMD mv /var/www /srv
-$ROOTCMD ln -nfs /srv/www /var
