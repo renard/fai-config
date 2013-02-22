@@ -2,5 +2,6 @@
 
 cat <<EOF | $ROOTCMD sh - 
 a2dismod ssl
-ln -nfs ../sites-available/puppetmaster /etc/nginx/sites-enabled
+
+sed -i -e "s/@@HOSTNAME@@/`hostname -f`/g" /etc/nginx/conf.d/puppetmaster.conf
 EOF

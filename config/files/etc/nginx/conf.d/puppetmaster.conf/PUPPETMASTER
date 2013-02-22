@@ -12,8 +12,8 @@ server {
     ssl                     on;
     ssl_session_timeout     5m;
     # You may need to change the certificate path
-    ssl_certificate         /var/lib/puppet/ssl/certs/puppetmaster.example.com.pem;
-    ssl_certificate_key     /var/lib/puppet/ssl/private_keys/puppetmaster.example.com.pem;
+    ssl_certificate         /var/lib/puppet/ssl/certs/@@HOSTNAME@@.pem;
+    ssl_certificate_key     /var/lib/puppet/ssl/private_keys/@@HOSTNAME@@.pem;
     ssl_client_certificate  /var/lib/puppet/ssl/ca/ca_crt.pem;
 
     # choose any ciphers
