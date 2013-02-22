@@ -1,12 +1,15 @@
 [main]
 logdir=/var/log/puppet
-vardir=/vat/lib/puppet
+vardir=/var/lib/puppet
 ssldir=$vardir/ssl
 rundir=/var/run/puppet
 factpath=$vardir/lib/facter
 templatedir=$confdir/templates
 
 server = @@HOSTNAME@@
+
+# prevent from errors in environmental usage
+pluginsync=false
 environment = production
 
 reports = store
