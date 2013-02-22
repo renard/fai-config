@@ -2,6 +2,5 @@
 
 cat <<EOF | $ROOTCMD sh - 
 a2dismod ssl
-
-sed -i -e "s/@@HOSTNAME@@/`hostname -f`/g" /etc/nginx/conf.d/puppetmaster.conf
+sed -i -e "s/@@HOSTNAME@@/\`hostname -f\`/g" /etc/nginx/conf.d/puppetmaster.conf
 EOF
