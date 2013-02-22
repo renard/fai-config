@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cat <<EOF | $ROOTCMD sh - 
+sed -i -e "s/@@HOSTNAME@@/\`hostname -f\`/g" /etc/puppet/puppet.conf
+EOF
