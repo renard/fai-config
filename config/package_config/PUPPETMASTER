@@ -1,3 +1,4 @@
 PACKAGE aptitude
 	puppetmaster
-	mongrel
+	puppetmaster-passenger
+	
