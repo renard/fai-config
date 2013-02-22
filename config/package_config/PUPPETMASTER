@@ -1,5 +1,5 @@
-PACKAGE aptitude
-	puppetmaster
-	puppetmaster-passenger
-	libapache2-mod-passenger
+PACKAGES aptitude
+	 puppetmaster
+	 puppetmaster-passenger
+	 libapache2-mod-passenger
 	
