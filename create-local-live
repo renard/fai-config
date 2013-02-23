@@ -11,13 +11,16 @@ else
     fi
 fi
 
-lb=$(git branch | grep  "^[[:space:]]*${local}\$")
-
 git branch -m "$LIVE_BRANCH" "$LIVE_BRANCH$(date +%Y%m%d-%H%M%S)"
 git checkout -b "$LIVE_BRANCH"
 
-if test -z "${lb}"; then
-    echo "Branch ${local} not found. Not merging. Hope that is OK."
-else
-    git merge "$local"
-fi
+for branch in "${local} puppet"; do
+
+    lb=$(git branch | grep  "^[[:space:]]*${branch}\$")
+    if test -z "${lb}"; then
+	echo "Branch ${branch} not found. Not merging. Hope that is OK."
+    else
+	git merge "$local"
+    fi
+done
+
