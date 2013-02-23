@@ -1,15 +1,14 @@
 #!/bin/sh
 
-puppet_target="/tmp/puppet"
-
 if test -d /var/lib/puppet; then
 
     rsync -ai --delete /var/lib/puppet $FAI_ROOT/tmp
 
+    # Run puppet in a standlone mode.
     cat <<EOF | $ROOTCMD sh -
-if test -d $puppet_target; then
-    puppet apply  --modulepath $puppet_target/modules  $puppet_target/manifests/site.pp
-    chown -R puppet.puppet /var/lib/puppet/reports
+if test -d /tmp/puppet; then
+    puppet apply --statedir /tmp/state --reportdir /tmp/reports \
+        --modulepath /tmp/puppet/modules /tmp/puppet/manifests/site.pp
 fi
 EOF
 
