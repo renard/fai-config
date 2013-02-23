@@ -4,7 +4,7 @@ puppet_target="/tmp/puppet"
 
 if test -d /var/lib/puppet; then
 
-    rsync -ai --delete /var/puppet $FAI_ROOT/tmp
+    rsync -ai --delete /var/lib/puppet $FAI_ROOT/tmp
 
     cat <<EOF | $ROOTCMD sh -
 if test -d $puppet_target; then
