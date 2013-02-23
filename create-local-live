@@ -14,7 +14,7 @@ fi
 git branch -m "$LIVE_BRANCH" "$LIVE_BRANCH$(date +%Y%m%d-%H%M%S)"
 git checkout -b "$LIVE_BRANCH"
 
-for branch in "${local} puppet"; do
+for branch in ${local} puppet; do
 
     lb=$(git branch | grep  "^[[:space:]]*${branch}\$")
     if test -z "${lb}"; then
