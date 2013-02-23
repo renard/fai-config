@@ -1,0 +1,16 @@
+#!/bin/sh
+
+puppet_target="/tmp/puppet"
+
+if test -d /var/lib/puppet; then
+
+    rsync -ai --delete /var/puppet $FAI_ROOT/tmp
+
+    cat <<EOF | $ROOTCMD sh -
+if test -d $puppet_target; then
+    puppet apply  --modulepath $puppet_target/modules  $puppet_target/manifests/site.pp
+fi
+EOF
+
+fi
+
