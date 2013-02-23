@@ -20,7 +20,7 @@ for branch in ${local} puppet; do
     if test -z "${lb}"; then
 	echo "Branch ${branch} not found. Not merging. Hope that is OK."
     else
-	git merge "$local"
+	git merge "${branch}"
     fi
 done
 
