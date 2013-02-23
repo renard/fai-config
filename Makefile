@@ -56,7 +56,13 @@ cd:
 
 conf: $(shell find etc config dhcp.d -type f -name '*.FAI_IN' | sed 's/\.FAI_IN//g') grub
 	@./create-local-live
+	make update-puppet-config
 	@./tools/gen-dhcp
+
+update-puppet-config:
+	if test -d puppet; then \
+		rsync -ai --delete puppet nfsroot/live/filesystem.dir/var/lib ; \
+	fi
 
 %: %.FAI_IN $(MAKEFILES)
 	@echo "Generating $@"
