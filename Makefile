@@ -9,7 +9,7 @@ include Makefile.conf.local
 MAKEFILES += Makefile.conf.local
 endif
 
-all:
+all: help
 help:
 	@echo "\n\
 Help for FAI helper\n\
