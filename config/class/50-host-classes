@@ -10,17 +10,19 @@ case $HOSTNAME in
     desktop)
 	echo "BASE DEBIAN LVM_XFS X WIFI NVIDIA" ;;
     *)
-	echo "BASE DEBIAN LVM_XFS";;
+	echo "BASE DEBIAN";;
 esac
 
 
-for d in $disklist; do
-    gb=$(parted /dev/$d unit GB print | awk '{if($1=="Disk"){print $NF}}' | cut -f1 -d. | cut -f1 -dG)
-    if test  $gb -lt 24; then
-	echo LVM_XFS_SMALL
-    else
-	echo LVM_XFS
-    fi
-done
+# If you need to auto-detect diskspace, uncomment following
+#
+# for d in $disklist; do
+#     gb=$(parted /dev/$d unit GB print | awk '{if($1=="Disk"){print $NF}}' | cut -f1 -d. | cut -f1 -dG)
+#     if test  $gb -lt 24; then
+# 	echo LVM_XFS_SMALL
+#     else
+# 	echo LVM_XFS
+#     fi
+# done
 
 exit 0
