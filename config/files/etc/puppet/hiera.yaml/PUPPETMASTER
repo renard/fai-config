@@ -1,0 +1,24 @@
+---
+
+:backends: - yaml
+
+# File search order in yaml datadir:
+#   - [HOSTNAME]/[MODULE_NAME].yaml
+#   - [MODULE_NAME].yaml
+#   - common.yaml
+#
+# Do not forget to reload the puppetmaster to take changes.
+# If using passenger with apache, reload apache.
+#
+# Some other disabled variables are:
+#  - %{::calling_class}
+#  - %{::calling_module}
+#  - %{::caller_module_name}
+
+:hierarchy:
+  - %{::clientcert}/%{::module_name}
+  - %{::module_name}
+  - common
+
+:yaml:
+  :datadir: /etc/puppet/environments/%{::environment}/hieradata
