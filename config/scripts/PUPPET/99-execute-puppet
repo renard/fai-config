@@ -4,11 +4,19 @@ if test -d /var/lib/puppet; then
 
     rsync -ai --delete /var/lib/puppet $FAI_ROOT/tmp
 
+    cp /var/lib/fai/config/files/etc/puppet/hiera.yaml/PUPPETMASTER \
+        $FAI_ROOT/tmp/puppet/hiera.yaml
+
+    echo -e "\n\n:yaml:\n    :datadir: /tmp/puppet/hieradata" \
+	>> $FAI_ROOT/tmp/puppet/hiera.yaml
+
+
     # Run puppet in a standlone mode.
     cat <<EOF | $ROOTCMD sh -
 if test -d /tmp/puppet; then
     puppet apply --statedir /tmp/state --reportdir /tmp/reports \
-        --modulepath /tmp/puppet/modules /tmp/puppet/manifests/site.pp
+        --modulepath /tmp/puppet/modules --hiera_config /tmp/puppet/hiera.yaml \
+        /tmp/puppet/manifests/site.pp
 fi
 EOF
 
