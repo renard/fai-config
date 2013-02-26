@@ -2,6 +2,15 @@
 
 if test -d /var/lib/puppet; then
 
+    mount | grep -q "on $FAI_ROOT/tmp/puppet type ramfs"
+    if test $? -ne 0; then
+	umount -fl $FAI_ROOT/tmp/puppet
+    fi
+
+    mkdir -p $FAI_ROOT/tmp/puppet
+    mount -t ramfs -o size=$(du -sh /var/lib | awk '{print $1}') \
+	ramfs $FAI_ROOT/tmp/puppet
+
     rsync -ai --delete /var/lib/puppet $FAI_ROOT/tmp
 
     cp /var/lib/fai/config/files/etc/puppet/hiera.yaml/PUPPETMASTER \
@@ -14,8 +23,10 @@ if test -d /var/lib/puppet; then
     # Run puppet in a standlone mode.
     cat <<EOF | $ROOTCMD sh -
 if test -d /tmp/puppet; then
-    puppet apply --statedir /tmp/state --reportdir /tmp/reports \
-        --modulepath /tmp/puppet/modules --hiera_config /tmp/puppet/hiera.yaml \
+    puppet apply --statedir /tmp/puppet/state \
+        --reportdir /tmp/puppet/reports \
+        --modulepath /tmp/puppet/modules \
+        --hiera_config /tmp/puppet/hiera.yaml \
         /tmp/puppet/manifests/site.pp
 fi
 EOF
