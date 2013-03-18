@@ -6,6 +6,6 @@ deb http://@@MY_FAI_SERVER@@:9999/debian-backports squeeze-backports main contri
 deb http://@@MY_FAI_SERVER@@:9999/debian squeeze-proposed-updates main contrib non-free
 deb http://@@MY_FAI_SERVER@@:9999/debian squeeze-updates main contrib non-free
 deb http://@@MY_FAI_SERVER@@:9999/debian squeeze main contrib non-free
-deb http://@@MY_FAI_SERVER@@:9999/puppetlabs squeeze dependencies main devel
+deb http://@@MY_FAI_SERVER@@:9999/puppetlabs squeeze dependencies main
 
 #EOF

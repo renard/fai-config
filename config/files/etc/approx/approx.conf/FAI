@@ -63,4 +63,5 @@ ubuntu-partner		http://archive.canonical.com/ubuntu
 
 # Add:
 # deb http://10.0.0.1:9999/puppetlabs quantal dependencies main devel
+# /!\ Do not add "devel" unless you know what you are doing. You'd been warned!
 puppetlabs		http://apt.puppetlabs.com
