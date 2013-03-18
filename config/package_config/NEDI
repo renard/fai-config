@@ -1,4 +1,5 @@
 PACKAGES aptitude
+  snmp
   librrds-perl
   libalgorithm-diff-perl
   libnet-snmp-perl
