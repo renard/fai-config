@@ -6,6 +6,10 @@ cat <<EOF >> $FAI_ROOT/root/README
 CRYPTSETUP
 ==========
 
+WARNING: this does not work properly with 3.2 kernel and cciss based card.
+If you are using such card please use a 2.6 kernel.
+
+
 Changing LUKS password
 ----------------------
 
@@ -16,6 +20,11 @@ You can change the LUKS password using following command:
 And remove install key:
 
   cryptsetup luksKillSlot  /dev/sda2 0
+
+To show the information about luks partition:
+
+  cryptsetup luksDump /dev/sda2
+
 
 Updating root authorized_keys
 -----------------------------

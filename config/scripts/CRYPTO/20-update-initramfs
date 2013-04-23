@@ -1,3 +1,4 @@
 #!/bin/sh
 
+$ROOTCMD vgchange -ay
 $ROOTCMD update-initramfs -uv
