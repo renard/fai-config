@@ -28,16 +28,15 @@
 # deb http://10.0.0.1:9999/debian squeeze-proposed-updates main contrib non-free
 # deb http://10.0.0.1:9999/debian squeeze main contrib non-free
 
-debian			http://http.debian.net/debian
-debian-backports	http://http.debian.net/debian-backports
-
-archives		http://http.debian.net/debian-archives/debian
-archives-backports.org	http://http.debian.net/debian-archives/backports.org
-archives-amd64		http://http.debian.net/debian-archives/debian-amd64
-archives-backports	http://http.debian.net/debian-archives/debian-backports
-archives-non-US		http://http.debian.net/debian-archives/debian-non-US
-archives-security	http://http.debian.net/debian-archives/debian-security
-archives-volatile	http://http.debian.net/debian-archives/debian-volatile
+debian				http://http.debian.net/debian
+debian-backports		http://http.debian.net/debian-backports
+debian-archive			http://http.debian.net/debian-archive/debian
+debian-archive-backports.org	http://http.debian.net/debian-archive/backports.org
+debian-archive-amd64		http://http.debian.net/debian-archive/debian-amd64
+debian-archive-backports	http://http.debian.net/debian-archive/debian-backports
+debian-archive-non-US		http://http.debian.net/debian-archive/debian-non-US
+debian-archive-security		http://http.debian.net/debian-archive/debian-security
+debian-archive-volatile		http://http.debian.net/debian-archive/debian-volatile
 
 # deb http://10.0.0.1:9999/debian-cw squeeze-cw main contrib non-free
 debian-cw		http://debian.chezwam.org/debian
