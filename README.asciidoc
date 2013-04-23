@@ -49,7 +49,7 @@ git clean -fdx
 You can save that parameter into git configuration:
 
 ----
-git config --set fai.local local
+git config fai.local local
 ----
 
 
@@ -75,6 +75,7 @@ git commit -asm "First commit for local branch."
 Then you can create initial FAI configuration:
 
 ----
+git checkout master
 make conf
 make init
 make update-fai-config
