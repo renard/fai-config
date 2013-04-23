@@ -27,7 +27,20 @@
 # deb http://10.0.0.1:9999/debian squeeze-updates main contrib non-free
 # deb http://10.0.0.1:9999/debian squeeze-proposed-updates main contrib non-free
 # deb http://10.0.0.1:9999/debian squeeze main contrib non-free
-
+#
+# For old "archive" debian, use something like (exampe given for lenny):
+#deb http://10.0.0.1:9999/debian-archive-security lenny/updates main contrib non-free
+#deb http://10.0.0.1:9999/debian-archive-volatile lenny/volatile main contrib non-free
+#deb http://10.0.0.1:9999/debian-archive-volatile lenny/volatile-sloppy main contrib non-free
+#deb http://10.0.0.1:9999/debian-archive-backports.org lenny-backports main contrib non-free
+#deb http://10.0.0.1:9999/debian-archive-backports.org lenny-backports-sloopy main contrib non-free
+#deb http://10.0.0.1:9999/debian-archive-backports lenny-backports main contrib non-free
+#deb http://10.0.0.1:9999/debian-archive-backports lenny-backports-sloopy main contrib non-free
+#deb http://10.0.0.1:9999/debian-archive lenny main contrib non-free
+#
+# For further usage see http://http.debian.net/debian-archive/
+# Check "dists" directory for each repository to check avalaible distros.
+#
 debian				http://http.debian.net/debian
 debian-backports		http://http.debian.net/debian-backports
 debian-archive			http://http.debian.net/debian-archive/debian
